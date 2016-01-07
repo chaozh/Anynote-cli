@@ -1,5 +1,5 @@
 export class NotesController {
-    constructor ($timeout, webDevTec, toastr) {
+    constructor () {
         'ngInject';
 
         this.notes = [];
