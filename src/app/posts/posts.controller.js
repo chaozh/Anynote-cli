@@ -1,9 +1,8 @@
-export class MainController {
-    // deal with auth?
+export class PostsController {
     constructor () {
         'ngInject';
 
-        this.awesomeThings = [];
+        this.posts = [];
         this.classAnimation = '';
         this.creationDate = 1452132385405;
   }
