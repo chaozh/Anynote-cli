@@ -1,7 +1,75 @@
 <div id="notes-container">
-    <div id="notes-menu"></div>
+    <div class="row">
+    <div id="notes-menu" class="col-xs-2 col-sm-2 col-md-2">
+        <div id="notes-control">
+            <button class="btn btn-default" ui-sref="#" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true">New Note</span>
+            </button>
+        </div>
+
+        <div id="notes-books">
+            <!-- <uib-accordion></uib-accordion> -->
+               <ul class="list-group">
+                    <li id="notes-favorites" class="list-group-item">favorites</li>
+                    <li class="list-group-item">notes</li>
+                    <li class="list-group-item">books</li>
+                    <li class="list-group-item">tags</li>
+                    <li class="list-group-item">update!</li>
+              </ul>
+        </div>
+    </div>
     <!-- <notes-list></notes-list> -->
-    <div id="notes-list"></div>
+    <div id="notes-list" class="col-xs-4 col-sm-4 col-md-4">
+        <h2>Notes</h2>
+        <div id="notes-search-bar" class="form-group">
+            <div class="input-group">
+                  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true"></span>
+                  <input type="text" class="form-control" placeholder="Search for...">
+            </div><!-- /input-group -->
+            <div class="dropup">
+                  <button class="dropdown-toggle" type="button" id="notes-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Options
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="notes-options">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+            </div><!-- /dropup -->
+        </div>
+        <div id="notes-list">
+            <aside class="note-excerpt">
+                <div class="thumbnail">
+                <img src="..." alt="...">
+                <div class="caption">
+                    <h3>Thumbnail label</h3>
+                    <p>...</p>
+                </div>
+                </div><!-- /thubnail -->
+                <div class="note-control">
+                    <!-- press or hover -->
+                    <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </div>
+            </aside>
+
+            <aside class="note-excerpt">
+                <div class="thumbnail">
+                <img src="..." alt="...">
+                <div class="caption">
+                    <h3>Thumbnail label</h3>
+                    <p>...</p>
+                </div>
+                </div><!-- /thubnail -->
+            </aside>
+        </div>
+    </div>
     <!-- <note-editor></note-editor> -->
-    <div id="note-editor"></div>
+    <div id="note-editor" class="col-xs-6 col-sm-6 col-md-6">
+
+    </div>
+    </div>
 </div>
