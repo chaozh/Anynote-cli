@@ -1,0 +1,29 @@
+<!-- <ul class="list-group">
+    <li id="notes-favorites" class="list-group-item">favorites</li>
+    <li class="list-group-item">notes</li>
+    <li class="list-group-item">books</li>
+    <li class="list-group-item">tags</li>
+    <li class="list-group-item">update!</li>
+</ul> -->
+<accordion close-others="true">
+    <accordion-group is-open="true">
+        <accordion-heading>
+        <i class="pull-right glyphicon glyphicon-star"></i> Favorites
+      </accordion-heading>
+      <div ng-repeat="favor in vm.favorsData">{{favor}}</div>
+    </accordion-group>
+
+    <li class="list-group-item" ng-click="vm.homeLink">{{vm.homeTxt}}</li>
+
+    <accordion-group heading="Books">
+      <div ng-repeat="book in vm.booksData">{{book}}</div>
+    </accordion-group>
+
+    <accordion-group heading="Tags" ng-click="vm.getTagsData">
+      <div ng-repeat="tag in vm.tagsData">{{tag}}</div>
+    </accordion-group>
+
+    <accordion-group heading="Upgrade!">
+      <p>Upgrade your account!</p>
+    </accordion-group>
+</accordion>

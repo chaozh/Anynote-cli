@@ -2,8 +2,15 @@ export class NotesController {
     constructor () {
         'ngInject';
 
-        this.notes = [];
-        this.classAnimation = '';
-        this.creationDate = 1452132385405;
-  }
+        this.homeTxt = 'notes';
+        this.favorsData = [1,2,3];
+        this.booksData = [1,2,3];
+        this.tagsData = [1,2,3];
+    }
+
+    getTagsData () {
+        this.tagsData = [1,2,3,4];
+    }
+
+
 }

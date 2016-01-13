@@ -5,20 +5,24 @@ import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
 import { NotesController } from './notes/notes.controller';
-
-// import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
+import { PostsController } from './posts/posts.controller';
+import { NoteService } from '../app/components/note/note.service';
 // import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-// import { NavbarDirective } from '../app/components/navbar/navbar.directive';
-// import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
+import { BooksMenuDirective } from '../app/components/booksMenu/booksMenu.directive';
+import { ExcerptListDirective } from '../app/components/excerptList/excerptList.directive';
 
 angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'toastr'])
-  .constant('moment', moment)
-  .config(config)
-  .config(routerConfig)
-  .run(runBlock)
-  //.service('githubContributor', GithubContributorService)
-  //.service('webDevTec', WebDevTecService)
-  .controller('MainController', MainController)
-  .controller('NotesController', NotesController)
-  //.directive('acmeNavbar', NavbarDirective)
-  //.directive('acmeMalarkey', MalarkeyDirective);
+    .constant('moment', moment)
+    .constant('Config', {
+        APIURL: '/api'
+    })
+    .config(config)
+    .config(routerConfig)
+    .run(runBlock)
+    //.service('githubContributor', GithubContributorService)
+    .service('noteService', NoteService)
+    .controller('MainController', MainController)
+    .controller('NotesController', NotesController)
+    .controller('PostsController', PostsController)
+    .directive('booksMenu', BooksMenuDirective)
+    .directive('excerptList', ExcerptListDirective);

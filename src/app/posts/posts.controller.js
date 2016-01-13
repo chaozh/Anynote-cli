@@ -2,8 +2,9 @@ export class PostsController {
     constructor () {
         'ngInject';
 
-        this.posts = [];
-        this.classAnimation = '';
-        this.creationDate = 1452132385405;
+        this.favorsData = [1,2,3];
+        this.booksData = [1,2,3];
+        this.tagsData = [1,2,3];
+        this.homeTxt = 'posts';
   }
 }

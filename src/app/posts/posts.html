@@ -1,7 +1,24 @@
 <div id="posts-container">
-    <div id="posts-menu"></div>
+    <div class="row">
+    <div id="posts-menu" class="col-xs-2 col-sm-2 col-md-2">
+        <div id="posts-control">
+            <button class="btn btn-default" ui-sref="#" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true">New Note</span>
+            </button>
+        </div>
+
+        <div id="posts-books">
+            <books-menu home-txt="posts.homeTxt" home-link="" favors-data="posts.favorsData" books-data="posts.booksData" tags-data="posts.tagsData"></books-menu>
+        </div>
+    </div>
     <!-- <posts-list></posts-list> -->
-    <div id="posts-list"></div>
+    <div id="posts-excerpt-list" class="col-xs-4 col-sm-4 col-md-4">
+        <excerpt-list title-txt="Posts"></excerpt-list>
+    </div>
     <!-- <post-editor></post-editor> -->
-    <div id="post-editor"></div>
+    <div id="post-editor" class="col-xs-6 col-sm-6 col-md-6">
+
+    </div>
+    </div>
 </div>
+
