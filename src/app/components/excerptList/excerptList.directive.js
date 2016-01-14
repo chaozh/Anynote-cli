@@ -6,7 +6,8 @@ export function ExcerptListDirective() {
         templateUrl: 'app/components/excerptList/excerptList.html',
         scope: {
             titleTxt: '@',
-            excerptsData: '&'
+            excerpts: '=',
+            getExcerpts: '&'
         },
         controller: ExcerptListController,
         controllerAs: 'vm',
@@ -19,7 +20,24 @@ export function ExcerptListDirective() {
 class ExcerptListController {
     constructor () {
         'ngInject';
-        this.excerpts = [{title:'test', content: '<p>good</p>'},
-        {title:'test', content: '<p>good</p>'}];
+    }
+
+    search(text) {
+        if (!text) {
+          this.filteredExcerpts = this.excerpts;
+          return;
+        }
+        text = text.toLowerCase();
+        this.filteredExcerpts = this.excerpts.filter(excerpt => {
+          if (excerpt.title.toLowerCase().includes(text)) {
+            return true;
+          }
+          // if (excerpt.categories.find(x => x.toLowerCase().includes(text))) {
+          //   return true;
+          // }
+          if (excerpt.tags.find(x => x.toLowerCase().includes(text))) {
+            return true;
+          }
+        });
     }
 }

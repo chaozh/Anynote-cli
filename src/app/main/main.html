@@ -9,9 +9,9 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a ui-sref="notes">Note</a></li>
-            <li><a ui-sref="posts">Post</a></li>
-            <li><a ui-sref="#">Contact</a></li>
+            <li ng-class="{active: $uiRoute}"><a ui-sref="notes">Note</a></li>
+            <li ng-class="{active: $uiRoute}"><a ui-sref="posts">Post</a></li>
+            <li ng-class="{active: $uiRoute}"><a ui-sref="#">Contact</a></li>
 
             <li><usr-settings></usr-settings></li>
           </ul>

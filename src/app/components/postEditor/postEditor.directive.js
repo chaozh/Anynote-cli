@@ -1,18 +1,16 @@
-export function BooksMenuDirective() {
+export function PostEditorDirective() {
     'ngInject';
 
     let directive = {
         restrict: 'E',
-        templateUrl: 'app/components/booksMenu/booksMenu.html',
+        templateUrl: 'app/components/postEditor/postEditor.html',
         scope: {
             homeTxt: '@',
             homeLink: '&',
-            favors: '=',
-            books: '=',
             tags: '=',
             getTags: '&'
         },
-        controller: BooksMenuController,
+        controller: PostEditorController,
         controllerAs: 'vm',
         bindToController: true
     };
@@ -20,11 +18,9 @@ export function BooksMenuDirective() {
     return directive;
 }
 
-class BooksMenuController {
+class PostEditorController {
     constructor () {
         'ngInject';
-
-        // "this.creation" is available by directive option "bindToController: true"
 
     }
 }

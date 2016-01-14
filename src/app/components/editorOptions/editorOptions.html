@@ -1,0 +1,38 @@
+<button class="note-preview" ng-click="notes.preview=!notes.preview" aria-label="Note preview">
+            <i ng-show="!notes.preview" class="glyphicon glyphicon-eye-close"></i>
+            <i ng-show="notes.preview" class="glyphicon glyphicon-eye-open"></i>
+        </button>
+        <button class="note-favorite" ng-click="notes.preview=!notes.preview" aria-label="Note favorite">
+            <i ng-show="!notes.preview" class="glyphicon glyphicon-star-empty"></i>
+            <i ng-show="notes.preview" class="glyphicon glyphicon-star"></i>
+        </button>
+        <button class="note-info" >
+            <i class="glyphicon glyphicon-info-sign"></i>
+        </button>
+        <button class="note-delete" >
+            <i class="glyphicon glyphicon-trash"></i>
+        </button>
+
+        <div class="note-more-options" dropdown dropdown-append-to-body>
+            <button class="dropdown-toggle" type="button" id="note-more-options" dropdown-toggle aria-label="other options">
+                <i class="glyphicon glyphicon glyphicon-option-horizontal"></i>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="note-more-options">
+                <li class="dropdown-header">Sort order</li>
+                <li><a href="#">Create date(acent)</a></li>
+                <li><a href="#">Create date(decent)</a></li>
+              </ul>
+        </div><!-- /dropup -->
+
+        <div class="note-share btn-group" dropdown>
+            <button id="note-share" type="button" class="note-share btn">Share</button>
+            <button type="button" class="btn" dropdown-toggle>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="note-more-options">
+                <li><a href="#">Send note</a></li>
+                <li><a href="#">Facebook</a></li>
+              </ul>
+        </div><!-- /dropup -->
+
+        </div>

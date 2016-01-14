@@ -1,18 +1,16 @@
-export function BooksMenuDirective() {
+export function EditorOptionsDirective() {
     'ngInject';
 
     let directive = {
         restrict: 'E',
-        templateUrl: 'app/components/booksMenu/booksMenu.html',
+        templateUrl: 'app/components/editorOptions/editorOptions.html',
         scope: {
             homeTxt: '@',
             homeLink: '&',
-            favors: '=',
-            books: '=',
             tags: '=',
             getTags: '&'
         },
-        controller: BooksMenuController,
+        controller: EditorOptionsController,
         controllerAs: 'vm',
         bindToController: true
     };
@@ -20,11 +18,9 @@ export function BooksMenuDirective() {
     return directive;
 }
 
-class BooksMenuController {
+class EditorOptionsController {
     constructor () {
         'ngInject';
-
-        // "this.creation" is available by directive option "bindToController: true"
 
     }
 }

@@ -10,17 +10,17 @@
         <accordion-heading>
         <i class="pull-right glyphicon glyphicon-star"></i> Favorites
       </accordion-heading>
-      <div ng-repeat="favor in vm.favorsData">{{favor}}</div>
+      <div ng-repeat="favor in vm.favors">{{favor}}</div>
     </accordion-group>
 
-    <li class="list-group-item" ng-click="vm.homeLink">{{vm.homeTxt}}</li>
+    <li class="list-group-item" ng-click="vm.homeLink()">{{vm.homeTxt}}</li>
 
     <accordion-group heading="Books">
-      <div ng-repeat="book in vm.booksData">{{book}}</div>
+      <div ng-repeat="book in vm.books">{{book}}</div>
     </accordion-group>
 
-    <accordion-group heading="Tags" ng-click="vm.getTagsData">
-      <div ng-repeat="tag in vm.tagsData">{{tag}}</div>
+    <accordion-group heading="Tags" ng-click="vm.getTags()">
+      <div ng-repeat="tag in vm.tags">{{tag}}</div>
     </accordion-group>
 
     <accordion-group heading="Upgrade!">

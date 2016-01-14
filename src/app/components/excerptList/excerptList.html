@@ -2,18 +2,26 @@
 <div class="search-bar form-group">
     <div class="input-group">
           <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true"></span>
-          <input type="text" class="form-control" placeholder="Search for...">
+          <input type="text" class="form-control" ng-model="searchText" ng-change="vm.search(searchText)" placeholder="Search for...">
     </div><!-- /input-group -->
+    <span>{{vm.excerpts.length}}</span>
     <div class="dropup" dropdown dropdown-append-to-body>
           <button class="dropdown-toggle" type="button" id="excerpt-options" dropdown-toggle>
             Options
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="excerpt-options">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
+            <li class="dropdown-header">Sort order</li>
+            <li><a href="#">Create date(acent)</a></li>
+            <li><a href="#">Create date(decent)</a></li>
+            <li><a href="#">Update date(acent)</a></li>
+            <li><a href="#">Update date(decent)</a></li>
+            <li><a href="#">Title(acent)</a></li>
+            <li><a href="#">Title(decent)</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Display options</li>
+            <li><a href="#">Display image</a></li>
+            <li><a href="#">Display text</a></li>
           </ul>
     </div><!-- /dropup -->
 </div>

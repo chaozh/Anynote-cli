@@ -1,0 +1,27 @@
+<section>
+    <header class="note-editor-options">
+        <editor-options></editor-options>
+        <div class="note-title">
+            <input ng-model="notes.post.title" placeholder="Untitled">
+        </div>
+
+        <div class="note-metas">
+            <div class="note-book btn-group" dropdown>
+                <button id="note-book" type="button" class="note-book btn">Books</button>
+                <button type="button" class="btn" dropdown-toggle>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="note-books">
+                    <li><input type="text" class="form-control" ng-model="searchText" ng-change="vm.search(searchText)" placeholder="Search for..."></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Send note</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Facebook</a></li>
+                  </ul>
+            </div><!-- /dropup -->
+
+            <!-- tags editor-->
+    </header>
+    <div ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="{mode:'gfm', lineWrapping: true}"></div>
+    <div marked="vm.note.content" class="markdown-body"></div>
+</section>
