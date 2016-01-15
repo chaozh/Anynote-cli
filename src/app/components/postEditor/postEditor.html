@@ -2,26 +2,60 @@
     <header class="post-editor-options">
         <editor-options></editor-options>
         <div class="post-title">
-            <input ng-model="posts.post.title" placeholder="Untitled">
+            <input ng-model="vm.post.title" placeholder="Untitled">
         </div>
 
         <div class="post-metas">
-            <div class="post-book btn-group" dropdown>
-                <button id="post-book" type="button" class="post-book btn">Books</button>
-                <button type="button" class="btn" dropdown-toggle>
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="post-books">
-                    <li><input type="text" class="form-control" ng-model="searchText" ng-change="vm.search(searchText)" placeholder="Search for..."></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Send post</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Facebook</a></li>
-                  </ul>
-            </div><!-- /dropup -->
+            <books-editor></books-editor>
 
             <!-- tags editor-->
+            <tags-editor></tags-editor>
     </header>
-    <div ng-model="vm.post.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="{mode:'gfm', lineWrapping: true}"></div>
-    <div marked="vm.post.content" class="markdown-body"></div>
+
+    <div class="post-editor">
+        <div id="post-tools">
+            <button class="btn btn-default" ng-click="vm.addNote()" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true">Add Note</span>
+            </button>
+
+            <script type="text/ng-template" id="notesModal.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Notes</h3>
+                </div>
+                <div class="modal-body">
+                    <excerpt-list title-txt="Posts" excerpts="vm.excerptsData"></excerpt-list>
+                    <!-- <ul>
+                        <li ng-repeat="item in items">
+                            <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+                        </li>
+                    </ul>
+                    Selected: <b>{{ selected.item }}</b> -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+                </div>
+            </script>
+        </div>
+        <div class="post-notes-dragable" ng-sortable>
+            <aside class="post-note draggable">
+                <div class="content">this is a test1</div>
+                <button class="btn btn-default" ng-click="vm.editNote()" role="button">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit Note</span>
+                </button>
+            </aside>
+
+            <aside class="post-note draggable">
+                <div class="content">this is a test2</div>
+                <button class="btn btn-default" ng-click="vm.editNote()" role="button">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit Note</span>
+                </button>
+            </aside>
+        </div>
+        <!-- md edit state -->
+        <div ng-model="vm.post.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="{mode:'gfm', lineWrapping: true}"></div>
+        <div marked="vm.post.content" class="markdown-body"></div>
+        <!-- style edit state -->
+        <div styled="vm.post.content" class="style-body"></div>
+    </div>
 </section>

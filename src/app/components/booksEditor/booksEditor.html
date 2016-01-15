@@ -1,0 +1,13 @@
+<div class="books-editor btn-group" dropdown>
+    <button id="post-book" type="button" class="books-editor btn">Books</button>
+    <button type="button" class="btn" dropdown-toggle>
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="post-books">
+        <li><input type="text" class="form-control" ng-model="searchText" ng-change="vm.search(searchText)" placeholder="Search for..."></li>
+        <li class="divider"></li>
+        <li><a href="#">Send post</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+</div><!-- /dropup -->
