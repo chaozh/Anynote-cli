@@ -14,6 +14,7 @@ import { EditorOptionsDirective } from '../app/components/editorOptions/editorOp
 import { BooksEditorDirective } from '../app/components/booksEditor/booksEditor.directive';
 import { PostEditorDirective } from '../app/components/postEditor/postEditor.directive';
 import { NoteEditorDirective } from '../app/components/noteEditor/noteEditor.directive';
+import { UsrStatusDirective } from '../app/components/usrStatus/usrStatus.directive';
 
 angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.codemirror', 'ng-sortable', 'toastr'])
     .constant('moment', moment)
@@ -33,4 +34,5 @@ angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
     .directive('editorOptions', EditorOptionsDirective)
     .directive('booksEditor', BooksEditorDirective)
     .directive('postEditor', PostEditorDirective)
-    .directive('noteEditor', NoteEditorDirective);
+    .directive('noteEditor', NoteEditorDirective)
+    .directive('usrStatus', UsrStatusDirective);
