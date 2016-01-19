@@ -17,7 +17,7 @@ export function UsrStatusDirective() {
 }
 
 class UsrStatusController {
-    constructor () {
+    constructor (authService) {
         'ngInject';
 
         this.usr = {
@@ -25,16 +25,14 @@ class UsrStatusController {
             nickName: 'Yeoman',
             avatarPath: 'assets/images/yeoman.png'
         };
+        this.authService = authService;
     }
 
     logout() {
-        this.usr = {};
+        this.authService.logout();
     }
 
     isAuthorized() {
-        if(this.usr.id != 0)
-            return true;
-        else
-            return false;
+        return this.authService.isAuthenticated();
     }
 }
