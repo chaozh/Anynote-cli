@@ -11,6 +11,9 @@
             <!-- tags editor-->
             <tags-editor></tags-editor>
     </header>
-    <div ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="{mode:'gfm', lineWrapping: true}"></div>
-    <div marked="vm.note.content" class="markdown-body"></div>
+    <div class="edit-content">
+        <div class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="{mode:'gfm', lineWrapping: true}"></div>
+        <div ng-bind-html-unsafe="vm.note.content" class="html-body"></div>
+    </div>
+    <!-- forked notes or related notes-->
 </section>

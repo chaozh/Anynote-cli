@@ -19,8 +19,17 @@ export function NoteEditorDirective() {
 }
 
 class NoteEditorController {
-    constructor () {
+    constructor ($state, $stateParams, noteService) {
         'ngInject';
 
+         Object.assign(this, {
+            $state, $stateParams, noteService
+        });
+
+        this.note = {
+            title: '',
+            content: ''
+
+        };
     }
 }
