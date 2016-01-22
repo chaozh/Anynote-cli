@@ -1,7 +1,7 @@
 <div class="usr-login" ng-show="{{vm.isAuthorized() == false}}">
     <ul class="nav navbar-nav">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+        <li><a ui-sref="signup"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+        <li><a ui-sref="signin"><span class="glyphicon glyphicon-log-in"></span>Sign In</a></li>
     </ul>
 </div>
 <div class="usr-status" dropdown dropdown-append-to-body ng-show="{{vm.isAuthorized() == true}}">

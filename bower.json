@@ -13,7 +13,6 @@
     "angular-ui-router": "~0.2.15",
     "bootstrap-sass": "~3.3.5",
     "angular-bootstrap": "~0.13.4",
-    "angular-toastr": "~1.5.0",
     "angular-ui-codemirror": "~0.3.0",
     "github-markdown-css": "~2.1.1",
     "moment": "~2.10.6",

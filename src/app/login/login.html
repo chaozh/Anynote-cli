@@ -1,0 +1,23 @@
+<div id="login" class="login container-fluid">
+    <header class="text-center center-block">
+        <h1 class="logo">Any Note</h1>
+        <h2 class="sub-title">note for post</h2>
+        <div class="qrcode-app-download">
+            <a href="/app" class="app-link"><span class="glyphicon glyphicon-qrcode"> Download App!</span></a>
+        </div>
+    </header>
+    <div class="row">
+    <div class="login-form center-block col-xs-4 col-sm-4 col-md-4">
+        <tabset justified="true">
+            <tab heading="Sign Up" ui-sref="signup" ui-sref-active="active">
+            </tab>
+            <tab heading="Sign In" ui-sref="signin" ui-sref-active="active">
+            </tab>
+            <div ui-view></div>
+        </tabset>
+    </div>
+    </div>
+    <footer class="text-center">
+        <span>© 2016 AnyNote</span>
+    </footer>
+</div>

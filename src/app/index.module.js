@@ -3,6 +3,7 @@
 import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
+import { LoginController } from './login/login.controller';
 import { MainController } from './main/main.controller';
 import { NotesController } from './notes/notes.controller';
 import { PostsController } from './posts/posts.controller';
@@ -17,7 +18,7 @@ import { PostEditorDirective } from '../app/components/postEditor/postEditor.dir
 import { NoteEditorDirective } from '../app/components/noteEditor/noteEditor.directive';
 import { UsrStatusDirective } from '../app/components/usrStatus/usrStatus.directive';
 
-angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.codemirror', 'ng-sortable', 'ng-token-auth', 'toastr'])
+angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.codemirror', 'ng-sortable', 'ng-token-auth'])
     .constant('moment', moment)
     .constant('Config', {
         APIURL: '/api'
@@ -36,6 +37,7 @@ angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
     //.service('githubContributor', GithubContributorService)
     .service('noteService', NoteService)
     .service('authService', AuthService)
+    .controller('LoginController', LoginController)
     .controller('MainController', MainController)
     .controller('NotesController', NotesController)
     .controller('PostsController', PostsController)
