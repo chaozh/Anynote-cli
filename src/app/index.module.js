@@ -20,17 +20,18 @@ import { UsrStatusDirective } from '../app/components/usrStatus/usrStatus.direct
 
 angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.codemirror', 'ng-sortable', 'ng-token-auth'])
     .constant('moment', moment)
-    .constant('Config', {
-        APIURL: '/api'
+    .constant('APIURL', '/api')
+    .constant('NOTE_EVENTS', {
+
     })
-    // .constant('AUTH_EVENTS', {
+    // ('AUTH_EVENTS', {
     //     loginSuccess: 'auth-login-success',
     //     loginFailed: 'auth-login-failed',
     //     logoutSuccess: 'auth-logout-success',
     //     sessionTimeout: 'auth-session-timeout',
     //     notAuthenticated: 'auth-not-authenticated',
     //     notAuthorized: 'auth-not-authorized'
-    // })
+    // });
     .config(config)
     .config(routerConfig)
     .run(runBlock)

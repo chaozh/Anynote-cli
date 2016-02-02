@@ -25,7 +25,15 @@ exports.paths = {
  */
 exports.wiredep = {
   exclude: [/\/bootstrap\.js$/, /\/bootstrap-sass\/.*\.js/, /\/bootstrap\.css/],
-  directory: 'bower_components'
+  directory: 'bower_components',
+  overrides: {
+    'codemirror': {
+        main: ['lib/codemirror.js', 'lib/codemirror.css', 'addon/mode/overlay.js', 'mode/markdown/markdown.js', 'mode/gfm/gfm.js', 'mode/yaml/yaml.js']
+    },
+    'ng-token-auth': {
+        main: ["dist/ng-token-auth.min.js"]
+    }
+  }
 };
 
 /**

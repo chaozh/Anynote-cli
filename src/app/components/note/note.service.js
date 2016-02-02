@@ -1,10 +1,10 @@
 export class NoteService {
 
-  constructor($http, $q, Config) {
+  constructor($http, $q, APIURL) {
     'ngInject';
 
     Object.assign(this, {
-      $http, $q, Config
+      $http, $q, APIURL
     });
 
     this.notes = [];
@@ -16,25 +16,25 @@ export class NoteService {
     if (this.notes.length) {
       return this.$q.resolve(this.notes);
     }
-    return this.$http.get(this.Config.APIURL + '/notes').then(res => {
+    return this.$http.get(this.APIURL + '/notes').then(res => {
       this.notes = res.data;
       return res.data;
     });
   }
 
-  getNote(slug) {
-    let note = this.notes.find(note => note.slug === slug);
+  getNote(id) {
+    let note = this.notes.find(note => note.id === id);
     if (note && angular.isDefined(note.content)) {
       return this.$q.resolve(note);
     }
-    return this.$http.get(this.Config.APIURL + '/notes/' + slug).then(res => {
-      let note = this.notes.find(note => note.slug === slug) || {};
+    return this.$http.get(this.APIURL + '/notes/' + id).then(res => {
+      let note = this.notes.find(note => note.id === id) || {};
       return Object.assign(note, res.data);
     });
   }
 
   updateNote(note) {
-    return this.$http.note(this.Config.APIURL + '/notes/', note).then(res => {
+    return this.$http.put(this.APIURL + '/notes/', note).then(res => {
       this.notes = [];
       this.books = [];
       this.tags = [];
@@ -43,7 +43,7 @@ export class NoteService {
   }
 
   deleteNote(id) {
-    return this.$http.delete(this.Config.APIURL + '/notes/' + id).then(res => {
+    return this.$http.delete(this.APIURL + '/notes/' + id).then(res => {
       this.notes = [];
       this.books = [];
       this.tags = [];
@@ -55,7 +55,7 @@ export class NoteService {
     if (this.books.length) {
       return this.$q.resolve(this.books);
     }
-    return this.$http.get(this.Config.APIURL + '/books').then(res => {
+    return this.$http.get(this.APIURL + '/books').then(res => {
       this.books = res.data;
       return res.data;
     });
@@ -65,7 +65,7 @@ export class NoteService {
     if (this.tags.length) {
       return this.$q.resolve(this.tags);
     }
-    return this.$http.get(this.Config.APIURL + '/tags').then(res => {
+    return this.$http.get(this.APIURL + '/tags').then(res => {
       this.tags = res.data;
       return res.data;
     });

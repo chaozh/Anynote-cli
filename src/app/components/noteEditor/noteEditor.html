@@ -2,7 +2,7 @@
     <header class="note-editor-options">
         <editor-options></editor-options>
         <div class="note-title">
-            <input ng-model="notes.post.title" placeholder="Untitled">
+            <input ng-model="vm.note.title" placeholder="Untitled">
         </div>
 
         <div class="note-metas">
@@ -12,8 +12,9 @@
             <tags-editor></tags-editor>
     </header>
     <div class="edit-content">
-        <div class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="{mode:'gfm', lineWrapping: true}"></div>
-        <div ng-bind-html-unsafe="vm.note.content" class="html-body"></div>
+        <div class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="vm.editorOptions"></div>
+        <!-- using github markdown style to render -->
+        <div ng-bind-html-unsafe="vm.note.content" class="markdown-body"></div>
     </div>
     <!-- forked notes or related notes-->
 </section>

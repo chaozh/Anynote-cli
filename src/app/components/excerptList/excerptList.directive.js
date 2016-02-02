@@ -6,8 +6,7 @@ export function ExcerptListDirective() {
         templateUrl: 'app/components/excerptList/excerptList.html',
         scope: {
             titleTxt: '@',
-            excerpts: '=',
-            getExcerpts: '&'
+            excerpts: '='
         },
         controller: ExcerptListController,
         controllerAs: 'vm',
@@ -39,5 +38,21 @@ class ExcerptListController {
             return true;
           }
         });
+    }
+
+    edit(id) {
+
+    }
+
+    share() {
+
+    }
+
+    star(id) {
+
+    }
+
+    delete(id) {
+
     }
 }

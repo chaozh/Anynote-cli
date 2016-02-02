@@ -5,8 +5,7 @@ export function NoteEditorDirective() {
         restrict: 'E',
         templateUrl: 'app/components/noteEditor/noteEditor.html',
         scope: {
-            homeTxt: '@',
-            homeLink: '&',
+            noteId: '&',
             tags: '=',
             getTags: '&'
         },
@@ -26,10 +25,33 @@ class NoteEditorController {
             $state, $stateParams, noteService
         });
 
-        this.note = {
-            title: '',
-            content: ''
+        //compare id & noteId, watch
+        noteService.getNote(this.noteId).then(note => {
+            this.note = note;
+        });
 
+        this.note = {
+            title: 'good',
+            content: ''
+//@(示例笔记本)[马克飞象|帮助|Markdown]
         };
+
+        this.refresh = false;
+        this.editorOptions = {
+            mode:'gfm',
+            lineWrapping: true
+            //lineNumbers: true
+        };
+        this.codemirrorLoaded = this.codemirrorLoaded.bind(this);
+    }
+
+    codemirrorLoaded (_editor) {
+        var _doc = _editor.getDoc();
+        _editor.focus();
+        //fetch #line ?
+        _editor.on('change', function(){
+
+            //console.log(_doc);
+        });
     }
 }

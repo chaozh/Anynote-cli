@@ -1,10 +1,11 @@
-export function config ($logProvider, $authProvider) {
+export function config ($logProvider, $authProvider, $windowProvider) {
   'ngInject';
   // Enable log
   $logProvider.debugEnabled(true);
 
   // Set options third-party lib
   // ng-token-auth
+  var $window = $windowProvider.$get();
   $authProvider.configure({
       apiUrl:                  '/api',
       tokenValidationPath:     '/auth/validate',
@@ -12,10 +13,10 @@ export function config ($logProvider, $authProvider) {
       emailRegistrationPath:   '/auth',
       accountUpdatePath:       '/auth',
       accountDeletePath:       '/auth',
-      confirmationSuccessUrl:  window.location.href,
+      confirmationSuccessUrl:  $window.location.href,
       passwordResetPath:       '/auth/pwd',
       passwordUpdatePath:      '/auth/pwd',
-      passwordResetSuccessUrl: window.location.href,
+      passwordResetSuccessUrl: $window.location.href,
       emailSignInPath:         '/auth/in',
       storage:                 'cookies',
       forceValidateToken:      false,

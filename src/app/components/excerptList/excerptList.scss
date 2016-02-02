@@ -1,0 +1,8 @@
+.excerpt-content {
+    .excerpt-control{
+        display: none;
+    }
+    :hover .excerpt-control{
+        display: block;
+    }
+}

@@ -1,4 +1,4 @@
-<h2>{{::vm.title}}</h2>
+<h2>{{::vm.titleTxt}}</h2>
 <div class="search-bar form-group">
     <div class="input-group">
           <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -27,7 +27,7 @@
 </div>
 
 <div class="excerpt-list">
-    <aside class="excerpt-content" ng-repeat="excerpt in vm.excerpts">
+    <aside class="excerpt-content" ng-repeat="excerpt in vm.excerpts" ng-click="vm.edit(excerpt.id)">
         <div class="thumbnail">
             <!-- <img ng-src=="..." alt="..."> -->
             <div class="caption">
@@ -37,9 +37,9 @@
         </div><!-- /thubnail -->
         <div class="excerpt-control">
             <!-- press or hover -->
-            <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-share" aria-hidden="true" ng-click="vm.share(excerpt.id)"></span>
+            <span class="glyphicon glyphicon-star-empty" aria-hidden="true" ng-click="vm.star(excerpt.id)"></span>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="vm.delete(excerpt.id)"></span>
         </div>
     </aside>
 </div>
