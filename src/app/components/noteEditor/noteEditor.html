@@ -1,8 +1,10 @@
 <section>
     <header class="note-editor-options">
         <editor-options></editor-options>
+    </header>
+    <div class="edit-content">
         <div class="note-title">
-            <input ng-model="vm.note.title" placeholder="Untitled">
+            # <input ng-model="vm.note.title" placeholder="Type your title here">
         </div>
 
         <div class="note-metas">
@@ -10,8 +12,8 @@
 
             <!-- tags editor-->
             <tags-editor></tags-editor>
-    </header>
-    <div class="edit-content">
+        </div>
+
         <div class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="vm.editorOptions"></div>
         <!-- using github markdown style to render -->
         <div ng-bind-html-unsafe="vm.note.content" class="markdown-body"></div>

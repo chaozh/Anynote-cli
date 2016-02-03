@@ -33,7 +33,7 @@ class NoteEditorController {
         this.note = {
             title: 'good',
             content: ''
-//@(示例笔记本)[马克飞象|帮助|Markdown]
+
         };
 
         this.refresh = false;
@@ -44,7 +44,8 @@ class NoteEditorController {
         };
         this.codemirrorLoaded = this.codemirrorLoaded.bind(this);
     }
-
+    //http://codemirror.net/1/contrib/sql/index.html
+    // new syntax & autocomplete
     codemirrorLoaded (_editor) {
         var _doc = _editor.getDoc();
         _editor.focus();
