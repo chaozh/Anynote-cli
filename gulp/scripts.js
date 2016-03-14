@@ -42,6 +42,7 @@ function webpackWrapper(watch, test, callback) {
   };
 
   var sources = [ path.join(conf.paths.src, '/app/index.module.js') ];
+  sources.push(path.join(conf.paths.src, '/app/constants.js'));
   if (test) {
     sources.push(path.join(conf.paths.src, '/app/**/*.spec.js'));
   }
