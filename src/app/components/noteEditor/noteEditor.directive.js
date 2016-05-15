@@ -5,13 +5,21 @@ export function NoteEditorDirective() {
         restrict: 'E',
         templateUrl: 'app/components/noteEditor/noteEditor.html',
         scope: {
-            noteId: '&',
             tags: '=',
             getTags: '&'
         },
         controller: NoteEditorController,
         controllerAs: 'vm',
-        bindToController: true
+        bindToController: true,
+        // link: function(scope, elm, attr) {
+
+        //       scope.$watch('noteId', (newValue, oldValue) => {
+        //           if (newValue !== oldValue) {
+        //             // You actions here
+        //             console.log("I got the new value! ", newValue);
+        //           }
+        //       }, true);
+        //}
     };
 
     return directive;
@@ -26,7 +34,7 @@ class NoteEditorController {
         });
 
         //compare id & noteId, watch
-        noteService.getNote(this.noteId).then(note => {
+        noteService.getNote($stateParams.id).then(note => {
             this.note = note;
         });
 
@@ -45,6 +53,7 @@ class NoteEditorController {
         this.codemirrorLoaded = this.codemirrorLoaded.bind(this);
     }
     //http://codemirror.net/1/contrib/sql/index.html
+    //http://langnostic.inaimathi.ca/posts/briefly-async-completions-with-code-mirror
     // new syntax & autocomplete
     codemirrorLoaded (_editor) {
         var _doc = _editor.getDoc();

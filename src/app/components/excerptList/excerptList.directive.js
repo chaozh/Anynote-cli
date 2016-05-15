@@ -17,8 +17,12 @@ export function ExcerptListDirective() {
 }
 
 class ExcerptListController {
-    constructor () {
+    constructor ($state, $stateParams) {
         'ngInject';
+
+        Object.assign(this, {
+            $state, $stateParams
+        });
     }
 
     search(text) {
@@ -41,7 +45,8 @@ class ExcerptListController {
     }
 
     edit(id) {
-
+        //trigger refresh event
+        this.$state.go('notes.edit', { id: id });
     }
 
     share() {

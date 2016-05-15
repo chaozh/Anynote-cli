@@ -31,6 +31,19 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/notes/notes.html',
         controller: 'NotesController',
         controllerAs: 'notes'
+        // views: {
+        //     "noteEditor": {
+        //         replace: true, //defalut new note
+        //         template: '<note-editor>'
+        //     }
+        // }
+    })
+    .state('edit', {
+        parent: 'notes',
+        url: '/edit/:id',
+        template: '<note-editor>'
+        //controller: 'NotesController',
+        //controllerAs: 'notes'
     })
     .state('posts', {
         parent: 'home',

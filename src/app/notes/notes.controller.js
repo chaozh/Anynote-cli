@@ -1,6 +1,10 @@
 export class NotesController {
-    constructor () {
+    constructor ($state, $stateParams) {
         'ngInject';
+
+        Object.assign(this, {
+            $state, $stateParams
+        });
 
         this.favorsData = [1,2,3];
         this.booksData = [1,2,3];
@@ -9,7 +13,7 @@ export class NotesController {
         this.excerptsData = [];
 
         this.preview = false;
-        this.id = 0; // fetch from url
+        //this.id = $stateParams.id; // fetch from url
     }
 
     getTags () {
