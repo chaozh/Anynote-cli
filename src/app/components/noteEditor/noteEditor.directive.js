@@ -34,6 +34,7 @@ class NoteEditorController {
         });
 
         //compare id & noteId, watch
+        //TODO: id set
         noteService.getNote($stateParams.id).then(note => {
             this.note = note;
         });

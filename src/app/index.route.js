@@ -41,7 +41,10 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('edit', {
         parent: 'notes',
         url: '/edit/:id',
-        template: '<note-editor>'
+        template: '<note-editor>',
+        resolve: {
+          loginRequired: loginRequired
+        }
         //controller: 'NotesController',
         //controllerAs: 'notes'
     })
@@ -54,4 +57,14 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     });
 
   $urlRouterProvider.otherwise('/notes');
+
+  function loginRequired($q, $location, $auth) {
+      var deferred = $q.defer();
+      if ($auth.isAuthenticated()) {
+        deferred.resolve();
+      } else {
+        $location.path('/signin');
+      }
+      return deferred.promise;
+    }
 }

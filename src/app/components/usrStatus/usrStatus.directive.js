@@ -5,8 +5,7 @@ export function UsrStatusDirective() {
         restrict: 'E',
         templateUrl: 'app/components/usrStatus/usrStatus.html',
         scope: {
-            usr: '=',
-            getUsr: '&'
+            usr: '='
         },
         controller: UsrStatusController,
         controllerAs: 'vm',

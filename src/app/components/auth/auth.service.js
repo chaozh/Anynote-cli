@@ -10,39 +10,40 @@ export class AuthService {
     }
 
     checkPermission() {
-        return this.$auth.validateUser();
+        return this.$auth.isAuthenticated(); //permission
     }
 
     signup(registForm) {
-        this.$auth.submitRegistration(registForm)
-        .then(function(resp) {
-          // handle success response
+        this.$auth.signup(registForm)
+        .then((resp) => {
+          // redirect_uri
         })
-        .catch(function(resp) {
+        .catch((resp) => {
           // handle error response
         });
     }
 
     login(credentials) {
-        this.$auth.submitLogin(credentials)
-        .then(function(resp) {
-          // handle success response
+        this.$auth.login(credentials)
+        .then((resp) => {
+          // should with redirect_uri
         })
-        .catch(function(resp) {
+        .catch((resp) => {
           // handle error response
         });
     }
 
     isAuthenticated() {
-        return !!this.credentials.userId;
+        return this.$auth.isAuthenticated();
+        //return !!this.credentials.userId;
     }
 
     logout() {
-        this.$auth.signOut()
-        .then(function(resp) {
+        this.$auth.logout()
+        .then((resp) => {
           // handle success response
         })
-        .catch(function(resp) {
+        .catch((resp) => {
           // handle error response
         });
     }
