@@ -9,7 +9,7 @@ export function config ($logProvider, $authProvider, $windowProvider) {
     $authProvider.httpInterceptor = function() { return true; };
     $authProvider.withCredentials = true;
     $authProvider.tokenRoot = null;
-    $authProvider.baseUrl = '/';
+    $authProvider.baseUrl = '/api';
     $authProvider.loginUrl = '/auth/login';
     $authProvider.signupUrl = '/auth';
     $authProvider.unlinkUrl = '/auth/unlink/';

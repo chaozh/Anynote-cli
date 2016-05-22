@@ -3,7 +3,7 @@ export class AuthService {
         'ngInject';
 
         Object.assign(this, {
-            $http, $q, $auth
+            $http, $auth
         });
 
         this.credentials = {};
@@ -13,24 +13,12 @@ export class AuthService {
         return this.$auth.isAuthenticated(); //permission
     }
 
-    signup(registForm) {
-        this.$auth.signup(registForm)
-        .then((resp) => {
-          // redirect_uri
-        })
-        .catch((resp) => {
-          // handle error response
-        });
+    signup(registForm, options) {
+        return this.$auth.signup(registForm, options);
     }
 
-    login(credentials) {
-        this.$auth.login(credentials)
-        .then((resp) => {
-          // should with redirect_uri
-        })
-        .catch((resp) => {
-          // handle error response
-        });
+    login(credentials, options) {
+        return this.$auth.login(credentials, options);
     }
 
     isAuthenticated() {
@@ -39,12 +27,6 @@ export class AuthService {
     }
 
     logout() {
-        this.$auth.logout()
-        .then((resp) => {
-          // handle success response
-        })
-        .catch((resp) => {
-          // handle error response
-        });
+        this.$auth.logout();
     }
 }

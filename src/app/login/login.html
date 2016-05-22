@@ -1,4 +1,6 @@
 <div id="login" class="login container-fluid">
+    <uib-alert ng-repeat="alert in login.alerts" type="{{alert.type}}" close="login.closeAlert($index)">{{alert.msg}}</uib-alert>
+
     <header class="text-center center-block">
         <h1 class="logo">Any Note</h1>
         <h2 class="sub-title">note for post</h2>

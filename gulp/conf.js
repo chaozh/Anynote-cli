@@ -29,9 +29,6 @@ exports.wiredep = {
   overrides: {
     'codemirror': {
         main: ['lib/codemirror.js', 'lib/codemirror.css', 'addon/mode/overlay.js', 'mode/markdown/markdown.js', 'mode/gfm/gfm.js', 'mode/yaml/yaml.js']
-    },
-    'ng-token-auth': {
-        main: ["dist/ng-token-auth.min.js"]
     }
   }
 };
