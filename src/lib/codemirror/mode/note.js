@@ -47,7 +47,7 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
                 tagsBlock: s.tagsBlock,
                 mathBlock: s.mathBlock,
                 todoBlock: s.todoBlock
-            }
+            };
         },
 
         token: function(stream, state) {
@@ -62,7 +62,7 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
             //state.code = false;
             return null;
         }
-    }
+    };
 
     var gfmConfig = {
         underscoresBreakWords: false,

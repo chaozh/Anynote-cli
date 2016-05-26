@@ -34,16 +34,12 @@ class NoteEditorController {
         });
 
         //compare id & noteId, watch
-        //TODO: id set
-        noteService.getNote($stateParams.id).then(note => {
-            this.note = note;
-        });
-
-        this.note = {
-            title: 'good',
-            content: ''
-
-        };
+        var id = this.$stateParams.id;
+        if (id !== undefined){
+            noteService.getNote(id).then(note => {
+                this.note = note;
+            });
+        } //else create new note
 
         this.refresh = false;
         this.editorOptions = {
@@ -59,6 +55,8 @@ class NoteEditorController {
     codemirrorLoaded (_editor) {
         var _doc = _editor.getDoc();
         _editor.focus();
+        //setup a timer for sync with server
+
         //fetch #line ?
         _editor.on('change', function(){
 

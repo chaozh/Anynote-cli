@@ -19,7 +19,8 @@ export class LoginController {
             rdcode: this.form.rdcode
         }).then((resp) => {
             this.alerts.push({type: 'success', msg: 'Login success!'});
-            console.log(resp);
+            //redirect to origin
+
         }).catch((resp) => {
             this.alerts.push({type: 'danger', msg: resp.statusText});
         });

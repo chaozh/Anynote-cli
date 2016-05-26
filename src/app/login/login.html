@@ -2,7 +2,7 @@
     <uib-alert ng-repeat="alert in login.alerts" type="{{alert.type}}" close="login.closeAlert($index)">{{alert.msg}}</uib-alert>
 
     <header class="text-center center-block">
-        <h1 class="logo">Any Note</h1>
+        <h1 class="logo"><a href="/" class="home">Any Note</a></h1>
         <h2 class="sub-title">note for post</h2>
         <div class="qrcode-app-download">
             <a href="/app" class="app-link"><span class="glyphicon glyphicon-qrcode"> Download App!</span></a>
@@ -10,13 +10,13 @@
     </header>
     <div class="row">
     <div class="login-form center-block col-xs-4 col-sm-4 col-md-4">
-        <tabset justified="true">
-            <tab heading="Sign Up" ui-sref="signup" ui-sref-active="active">
-            </tab>
-            <tab heading="Sign In" ui-sref="signin" ui-sref-active="active">
-            </tab>
+        <uib-tabset justified="true">
+            <uib-tab heading="Sign Up" ui-sref="signup" ui-sref-active="active">
+            </uib-tab>
+            <uib-tab heading="Sign In" ui-sref="signin" ui-sref-active="active">
+            </uib-tab>
             <div ui-view></div>
-        </tabset>
+        </uib-tabset>
     </div>
     </div>
     <footer class="text-center">
