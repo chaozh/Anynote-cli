@@ -15,7 +15,7 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
     var tokenTypes = {
         book: "book",
         tags: "tag",
-        math: "math",
+        math: "math"
         toc: "toc"
     };
 
@@ -37,7 +37,6 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
                 mathBlock: false,
                 tocBlock: false
                 //tableBlock: false, difficult to highlight syntax
-                //flowchatBlock: false same as codeBlock
             };
         },
 
@@ -76,4 +75,29 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
     return CodeMirror.overlayMode(CodeMirror.getMode(config, gfmConfig), noteOverlay);
 });
     CodeMirror.defineMIME("text/x-note", "note");
+
+    // deal with hint
+    var Pos = CodeMirror.Pos;
+    function getCompletions(token, context, keywords, options) {
+
+    }
+
+    function fetchStartPoint(token) {
+        var index = token.string.lastIndexOf("\.");
+        if (index < 0) {
+            return token.start + 1;
+        } else {
+            return token.start + index + 1;
+        }
+    }
+
+    function noteHint(editor, options) {
+        var cur = editor.getCursor(), token = editor.getTokenAt(cur), tprop = token;
+        return {
+            list : getCompletions(token, CodeMirror.noteContext, CodeMirror.noteContext, options),
+            from : Pos(cur.line, fetchStartPoint(token)),
+            to : Pos(cur.line, token.end)
+        };
+    };
+    CodeMirror.registerHelper("hint", "note", noteHint);
 });
