@@ -13,67 +13,84 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
     var codeDepth = 0;
 
     var tokenTypes = {
-        book: "book",
+        book: "link",
         tags: "tag",
-        math: "math"
-        toc: "toc"
+        math: "comment",
+        toc: "link"
     };
 
     var regexs = {
         //@(示例笔记本)[马克飞象|帮助|Markdown]
         //d = /^@(?:\((.*)\))?(?:\[(.*)\])?/m,
-        book: /^ *@(\((.*)\))?(\[(.*?)\])? *(?:\n+|$)/,
+        book: /^\@(\((.*)\))/,
         //tags: 马克飞象, 帮助, Markdown
         tags: /\s*[\,\|\uff0c]\s*/,
-        math: /$$(.*)$$/,
-        toc: /[TOC]/
+        math: /\$\$(.*)\$\$/,
+        toc: "[toc]"
     };
 
     var noteOverlay = {
         startState: function() {
+            //state object
             return {
-                bookBlock: false,
-                tagsBlock: false,
-                mathBlock: false,
-                tocBlock: false
+                tagsBlock: false
                 //tableBlock: false, difficult to highlight syntax
             };
         },
 
         copyState: function(s) {
             return {
-                bookBlock: s.bookBlock,
-                tagsBlock: s.tagsBlock,
-                mathBlock: s.mathBlock,
-                todoBlock: s.todoBlock
+                tagsBlock: s.tagsBlock
             };
         },
-
+        // pass in word stream & state object
         token: function(stream, state) {
-            // Check tags
-            if (state.bookBlock){
-
+            // Check book
+            if (stream.sol() && stream.match(regexs.book)) {
+                // check tags
+                stream.eatSpace();
+                // start tag state
+                if (stream.peek() === '[') {
+                    stream.next();
+                    state.tagsBlock = true;
+                    return tokenTypes.book;
+                }
             }
 
+            if (state.tagsBlock) {
+                state.tagsBlock = false;
+                if (stream.skipTo("]")){
+                    return tokenTypes.tags;
+                }
+            }
+
+            // check math esp within $$
+            if (stream.match(regexs.math)) {
+                return tokenTypes.math;
+            }
+
+            // check toc esp with blank line
+            if (stream.sol() && stream.match(regexs.toc, true, true)) {
+                stream.eatSpace();
+                if(stream.eol()){
+                    return tokenTypes.toc;
+                }
+            }
+
+            // rest markdown
+            stream.next();
+            return null;
         },
 
         blankLine: function(state) {
-            //state.code = false;
+            state.tagsBlock = false;
             return null;
         }
     };
 
-    var gfmConfig = {
-        underscoresBreakWords: false,
-        taskLists: true,
-        strikethrough: true
-    };
-    for (var attr in modeConfig) {
-        gfmConfig[attr] = modeConfig[attr];
-    }
-    gfmConfig.name = "gfm";
-    return CodeMirror.overlayMode(CodeMirror.getMode(config, gfmConfig), noteOverlay);
-});
+    return CodeMirror.overlayMode(CodeMirror.getMode(config), noteOverlay);
+}, "gfm");
+
     CodeMirror.defineMIME("text/x-note", "note");
 
     // deal with hint

@@ -35,7 +35,8 @@ exports.wiredep = {
             'addon/hint/show-hint.css',
             'addon/mode/overlay.js',
             'mode/markdown/markdown.js',
-            'mode/gfm/gfm.js'
+            'mode/gfm/gfm.js',
+            'mode/note.js'
         ]
     }
   }

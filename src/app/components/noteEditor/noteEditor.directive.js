@@ -43,7 +43,7 @@ class NoteEditorController {
 
         this.refresh = false;
         this.editorOptions = {
-            mode:'gfm',
+            mode:'note',
             lineWrapping: true
             //lineNumbers: true
         };
