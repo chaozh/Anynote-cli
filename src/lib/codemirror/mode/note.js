@@ -49,10 +49,11 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
             if (stream.sol() && stream.match(regexs.book)) {
                 // check tags
                 stream.eatSpace();
-                // start tag state
+                // start tag state esp with multiple '[' or ']'
                 if (stream.peek() === '[') {
-                    stream.next();
                     state.tagsBlock = true;
+                    return tokenTypes.book;
+                } else if (stream.eol()) {
                     return tokenTypes.book;
                 }
             }
@@ -60,6 +61,7 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
             if (state.tagsBlock) {
                 state.tagsBlock = false;
                 if (stream.skipTo("]")){
+                    stream.next();
                     return tokenTypes.tags;
                 }
             }
@@ -88,8 +90,15 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
         }
     };
 
-    return CodeMirror.overlayMode(CodeMirror.getMode(config), noteOverlay);
-}, "gfm");
+    var markdownConfig = {};
+    for (var attr in modeConfig) {
+        markdownConfig[attr] = modeConfig[attr];
+    }
+    markdownConfig.name = "gfm";
+
+    return CodeMirror.overlayMode(CodeMirror.getMode(config, markdownConfig), noteOverlay);
+
+}, "markdown");
 
     CodeMirror.defineMIME("text/x-note", "note");
 
