@@ -1,17 +1,4 @@
 <section>
-    <header class="post-editor-options">
-        <editor-options></editor-options>
-        <div class="post-title">
-            <input ng-model="vm.post.title" placeholder="Untitled">
-        </div>
-
-        <div class="post-metas">
-            <books-editor></books-editor>
-
-            <!-- tags editor-->
-            <tags-editor></tags-editor>
-    </header>
-
     <div class="post-editor">
         <div id="post-tools">
             <button class="btn btn-default" ng-click="vm.addNote()" role="button">
@@ -53,8 +40,7 @@
             </aside>
         </div>
         <!-- md edit state -->
-        <div ng-model="vm.post.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="{mode:'gfm', lineWrapping: true}"></div>
-        <div marked="vm.post.content" class="markdown-body"></div>
+         <note-editor note="vm.note" preview="vm.preview"></note-editor>
         <!-- style edit state -->
         <div styled="vm.post.content" class="style-body"></div>
     </div>

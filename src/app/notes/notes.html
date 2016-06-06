@@ -5,12 +5,20 @@
     </div>
     <!-- <notes-list></notes-list> -->
     <div id="notes-excerpt-list" class="col-xs-4 col-sm-4 col-md-4">
-        <excerpt-list title-txt="Notes" excerpts="notes.excerptsData" get-excerpts="notes.getExcerpts()"></excerpt-list>
+        <excerpt-list title-txt="Notes" excerpts="notes.excerptsData"></excerpt-list>
     </div>
     <!-- <note-editor></note-editor> -->
     <div id="note-editor" class="col-xs-6 col-sm-6 col-md-6">
+        <header class="note-editor-options">
+            <editor-options preview="notes.preview" star="notes.star"></editor-options>
+            <!-- publish button -->
+            <button class="btn btn-default" ng-click="notes.publish()" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true">Sync</span>
+            </button>
+        </header>
         <!-- only refesh this directive -->
-        <note-editor></note-editor>
+        <note-editor note="notes.note" preview="notes.preview"></note-editor>
+        <!-- forked notes or related notes-->
     </div>
     </div>
 </div>

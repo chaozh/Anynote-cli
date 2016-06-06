@@ -41,11 +41,19 @@ function webpackWrapper(watch, test, callback) {
     }
   };
 
-  var sources = [ path.join(conf.paths.src, '/app/index.module.js') ];
-  sources.push(path.join(conf.paths.src, '/app/constants.js'));
+  var sources = [
+    path.join(conf.paths.src, '/app/index.module.js'),
+    path.join(conf.paths.src, '/app/constants.js')
+  ];
   if (test) {
     sources.push(path.join(conf.paths.src, '/app/**/*.spec.js'));
   }
+  // hack for wiredep
+  var addons = [
+    path.join(conf.paths.src, '/lib/**/*.js'),
+    path.join(conf.paths.src, '/lib/**/*.css')
+  ];
+  gulp.src(addons).pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/addons')));
 
   return gulp.src(sources)
     .pipe(webpack(webpackOptions, null, webpackChangeHandler))

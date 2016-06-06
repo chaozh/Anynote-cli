@@ -33,11 +33,20 @@ export class NoteService {
     });
   }
 
-  updateNote(note) {
-    return this.$http.put(this.APIURL + '/notes/', note).then(res => {
-      this.notes = [];
-      this.books = [];
-      this.tags = [];
+  newNote(note) {
+    return this.$http.post(this.APIURL + '/notes/', note).then(res => {
+      this.notes.push(res.data);
+      this.books.push(res.data.books);
+      this.tags.push(res.data.tags);
+      return res.data;
+    });
+  }
+
+  updateNote(id, note) {
+    return this.$http.put(this.APIURL + '/notes/' + id, note).then(res => {
+      this.notes.push(res.data);
+      this.books.push(res.data.books);
+      this.tags.push(res.data.tags);
       return res.data;
     });
   }

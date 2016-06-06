@@ -25,7 +25,7 @@ CodeMirror.defineMode("note", function(config, modeConfig) {
         book: /^\@(\((.*)\))/,
         //tags: 马克飞象, 帮助, Markdown
         tags: /\s*[\,\|\uff0c]\s*/,
-        math: /\$\$(.*)\$\$/,
+        math: /\$[^\$]*\$/,
         toc: "[toc]"
     };
 

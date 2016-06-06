@@ -30,13 +30,18 @@ exports.wiredep = {
     'codemirror': {
         main: [
             'lib/codemirror.js',
-            'lib/codemirror.css',
+            //'lib/codemirror.css',
             'addon/hint/show-hint.js',
             'addon/hint/show-hint.css',
             'addon/mode/overlay.js',
             'mode/markdown/markdown.js',
-            'mode/gfm/gfm.js',
-            'mode/note.js'
+            'mode/gfm/gfm.js'
+        ]
+    },
+    'Sortable': {
+        main: [
+            'Sortable.min.js',
+            'ng-sortable.js'
         ]
     }
   }

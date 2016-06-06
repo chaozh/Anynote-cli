@@ -8,7 +8,9 @@ export function EditorOptionsDirective() {
             homeTxt: '@',
             homeLink: '&',
             tags: '=',
-            getTags: '&'
+            getTags: '&',
+            preview: '=',
+            star: '='
         },
         controller: EditorOptionsController,
         controllerAs: 'vm',

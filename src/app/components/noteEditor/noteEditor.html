@@ -1,15 +1,5 @@
-<section>
-    <header class="note-editor-options">
-        <editor-options></editor-options>
-    </header>
-    <div class="edit-content">
-        <div class="note-title">
-            # <input ng-model="vm.note.title" placeholder="Type your title here">
-        </div>
-
-        <div class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="vm.editorOptions"></div>
-        <!-- using github markdown style to render -->
-        <div ng-bind-html-unsafe="vm.note.content" class="markdown-body"></div>
-    </div>
-    <!-- forked notes or related notes-->
-</section>
+<div class="edit-content">
+    <div class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="vm.editorOptions"></div>
+    <!-- using github markdown style to render -->
+    <div ng-show="vm.preview" ng-bind-html-unsafe="vm.note.html" class="markdown-body"></div>
+</div>

@@ -2,9 +2,9 @@
             <span ng-show="!notes.preview" class="glyphicon glyphicon-eye-close"></span>
             <span ng-show="notes.preview" class="glyphicon glyphicon-eye-open"></span>
         </button>
-        <button class="note-favorite" ng-click="notes.preview=!notes.preview" aria-label="Note favorite">
-            <span ng-show="!notes.preview" class="glyphicon glyphicon-star-empty"></span>
-            <span ng-show="notes.preview" class="glyphicon glyphicon-star"></span>
+        <button class="note-favorite" ng-click="notes.star=!notes.star" aria-label="Note favorite">
+            <span ng-show="!notes.star" class="glyphicon glyphicon-star-empty"></span>
+            <span ng-show="notes.star" class="glyphicon glyphicon-star"></span>
         </button>
         <button class="note-info" >
             <span class="glyphicon glyphicon-info-sign"></span>
@@ -13,8 +13,8 @@
             <span class="glyphicon glyphicon-trash"></span>
         </button>
 
-        <div class="note-more-options" dropdown dropdown-append-to-body>
-            <button class="dropdown-toggle" type="button" id="note-more-options" dropdown-toggle aria-label="other options">
+        <div class="note-more-options" uib-dropdown uib-dropdown-append-to-body>
+            <button class="dropdown-toggle" type="button" id="note-more-options" uib-dropdown-toggle aria-label="other options">
                 <span class="glyphicon glyphicon glyphicon-option-horizontal"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="note-more-options">
@@ -24,9 +24,9 @@
               </ul>
         </div><!-- /dropup -->
 
-        <div class="note-share btn-group" dropdown>
+        <div class="note-share btn-group" uib-dropdown>
             <button id="note-share" type="button" class="note-share btn">Share</button>
-            <button type="button" class="btn" dropdown-toggle>
+            <button type="button" class="btn" uib-dropdown-toggle>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="note-more-options">

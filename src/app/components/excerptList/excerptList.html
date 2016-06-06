@@ -5,8 +5,8 @@
           <input type="text" class="form-control" ng-model="searchText" ng-change="vm.search(searchText)" placeholder="Search for...">
     </div><!-- /input-group -->
     <span>{{::vm.excerpts.length}}</span>
-    <div class="sort-order" dropdown dropdown-append-to-body>
-          <button class="dropdown-toggle" type="button" id="excerpt-options" dropdown-toggle>
+    <div class="sort-order" uib-dropdown uib-dropdown-append-to-body>
+          <button class="dropdown-toggle" type="button" id="excerpt-options" uib-dropdown-toggle>
             Options
             <span class="caret"></span>
           </button>
@@ -26,13 +26,13 @@
     </div><!-- /dropup -->
 </div>
 
-<div class="excerpt-list">
-    <aside class="excerpt-content" ng-repeat="excerpt in vm.excerpts" ng-click="vm.edit(excerpt.id)">
+<div class="excerpt-list" ng-sortable>
+    <aside class="excerpt-content draggable" ng-repeat="excerpt in vm.excerpts" ng-click="vm.edit(excerpt.id)">
         <div class="thumbnail">
             <!-- <img ng-src=="..." alt="..."> -->
             <div class="caption">
                 <h3>{{::excerpt.title}}</h3>
-                {{::excerpt.content}}
+                {{::excerpt.html}}
             </div>
         </div><!-- /thubnail -->
         <div class="excerpt-control">

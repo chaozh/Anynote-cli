@@ -8,7 +8,7 @@ export function PostEditorDirective() {
             homeTxt: '@',
             homeLink: '&',
             tags: '=',
-            getTags: '&'
+            excerpts: '='
         },
         controller: PostEditorController,
         controllerAs: 'vm',
@@ -19,43 +19,40 @@ export function PostEditorDirective() {
 }
 
 class NotesModalController {
-    constructor($modalInstance, excerpts) {
+    constructor($uibModalInstance, excerpts) {
         'ngInject';
 
-        this.$modalInstance = $modalInstance;
+        this.$uibModalInstance = $uibModalInstance;
         this.excerptsData = excerpts;
     }
 
     ok() {
-        this.$modalInstance.close();
+        this.$uibModalInstance.close();
     }
 
     cancel() {
-        this.$modalInstance.dismiss('cancel');
+        this.$uibModalInstance.dismiss('cancel');
     }
 }
 
 class PostEditorController {
-    constructor ($modal) {
+    constructor ($uibModal) {
         'ngInject';
 
         Object.assign(this, {
-            $modal
+            $uibModal
         });
-
-        this.excerptsData = [{title:'test', content: '<p>good</p>'},
-        {title:'test2', content: '<p>good</p>'}];
     }
 
     addNote() {
-        let modalInstance = this.$modal.open({
+        let modalInstance = this.$uibModal.open({
               templateUrl: 'notesModal.html',
               controller: NotesModalController,
               controllerAs: 'vm',
               bindToController : true,
               resolve: {
                 excerpts: () => {
-                  return this.excerptsData;
+                  return this.excerpts;
                 }
               }
         });

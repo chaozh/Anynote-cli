@@ -1,6 +1,12 @@
 # Anynote-cli
 web client for Anynote
 
+# todo
+2. post drag
+3. post edit
+4. change codemirror to ace version
+5. note auto save
+
 # related
 
 ## design
