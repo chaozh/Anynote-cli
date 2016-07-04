@@ -42,7 +42,7 @@ export class NoteService {
     });
   }
 
-  updateNote(id, note) {
+  updateNote(id, note, book, tags) {
     return this.$http.put(this.APIURL + '/notes/' + id, note).then(res => {
       this.notes.push(res.data);
       this.books.push(res.data.books);

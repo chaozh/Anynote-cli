@@ -22,11 +22,13 @@ export class NotesController {
             });
         } else {
             this.note = {
-                //title: 'test',
+                title: 'test',
                 content: '# test',
                 html: '',
                 status: 'draft',
-                date: this.moment().format()
+                date: this.moment().format(),
+                book: '',
+                tags: []
             };
         }
         //watch sync event
@@ -34,23 +36,26 @@ export class NotesController {
     }
 
     getTags () {
-        this.tagsData = [1,2,3,4];
+        this.noteService.getTags().then(tags => {
+            this.tagsData = tags;
+        });
     }
 
     getExcerpts () {
         this.noteService.getNotes().then(notes => {
             this.excerptsData = notes;
+
+            this.excerptsData = [{title:'test', html: '<p>good</p>'},
+                {title:'test2', html: '<p>good</p>'}];
         });
-        this.excerptsData = [{title:'test', html: '<p>good</p>'},
-        {title:'test2', html: '<p>good</p>'}];
+
     }
 
-    publish() {
-        //deal with content
+    sync() {
+        //deal with content also with tags & book
         this.noteService.updateNote(this.note).then(note => {
             this.note = note;
         });
-        //deal with tags
 
     }
 }

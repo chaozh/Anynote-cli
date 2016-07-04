@@ -4,7 +4,7 @@
           <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true"></span>
           <input type="text" class="form-control" ng-model="searchText" ng-change="vm.search(searchText)" placeholder="Search for...">
     </div><!-- /input-group -->
-    <span>{{::vm.excerpts.length}}</span>
+    <span>{{vm.excerpts.length}}</span>
     <div class="sort-order" uib-dropdown uib-dropdown-append-to-body>
           <button class="dropdown-toggle" type="button" id="excerpt-options" uib-dropdown-toggle>
             Options
@@ -27,12 +27,12 @@
 </div>
 
 <div class="excerpt-list" ng-sortable>
-    <aside class="excerpt-content draggable" ng-repeat="excerpt in vm.excerpts" ng-click="vm.edit(excerpt.id)">
+    <aside class="excerpt-content draggable" ng-repeat="excerpt in vm.filteredExcerpts" ng-click="vm.edit(excerpt.id)" id="excerpt-{{::excerpt.id}}">
         <div class="thumbnail">
             <!-- <img ng-src=="..." alt="..."> -->
             <div class="caption">
                 <h3>{{::excerpt.title}}</h3>
-                {{::excerpt.html}}
+                <div ng-bind-html="excerpt.html"></div>
             </div>
         </div><!-- /thubnail -->
         <div class="excerpt-control">
