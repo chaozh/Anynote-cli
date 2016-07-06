@@ -6,6 +6,7 @@ angular
 .constant('moment', moment)
 .constant('APIURL', '/api')
 .constant('NOTE_EVENTS', {
+    noteUpdated: 'note-updated'
 
 });
 // ('AUTH_EVENTS', {

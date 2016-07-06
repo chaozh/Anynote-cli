@@ -1,9 +1,9 @@
 export class NotesController {
-    constructor ($state, $stateParams, noteService, moment) {
+    constructor ($state, $stateParams, noteService, NOTE_EVENTS) {
         'ngInject';
 
         Object.assign(this, {
-            $state, $stateParams, noteService, moment
+            $state, $stateParams, noteService, NOTE_EVENTS
         });
 
         this.favorsData = [];
@@ -21,18 +21,11 @@ export class NotesController {
                 this.note = note;
             });
         } else {
-            this.note = {
-                title: 'test',
-                content: '# test',
-                html: '',
-                status: 'draft',
-                date: this.moment().format(),
-                book: '',
-                tags: []
-            };
+            this.note = this.noteService.getEmptyNote();
         }
+        console.log(this.note);
         //watch sync event
-
+        //this.$watch(NOTE_EVENTS.noteUpdated, this.sync);
     }
 
     getTags () {
@@ -44,18 +37,21 @@ export class NotesController {
     getExcerpts () {
         this.noteService.getNotes().then(notes => {
             this.excerptsData = notes;
-
-            this.excerptsData = [{title:'test', html: '<p>good</p>'},
-                {title:'test2', html: '<p>good</p>'}];
         });
 
     }
 
     sync() {
         //deal with content also with tags & book
-        this.noteService.updateNote(this.note).then(note => {
-            this.note = note;
-        });
+        if(angular.isNumber(this.note.id)) {
+            this.noteService.updateNote(this.note.id, this.note).then(note => {
+                this.note = note;
+            });
+        } else {
+            this.noteService.newNote(this.note).then(note => {
+                this.note = note;
+            });
+        }
 
     }
 }

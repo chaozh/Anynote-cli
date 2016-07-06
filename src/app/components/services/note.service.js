@@ -1,10 +1,10 @@
 export class NoteService {
 
-  constructor($http, $q, APIURL) {
+  constructor($http, $q, APIURL, moment) {
     'ngInject';
 
     Object.assign(this, {
-      $http, $q, APIURL
+      $http, $q, APIURL, moment
     });
 
     this.notes = [];
@@ -22,6 +22,18 @@ export class NoteService {
     });
   }
 
+  getEmptyNote() {
+    return {
+        title: '',
+        content: '',
+        html: '',
+        status: 'draft',
+        date: this.moment().format(),
+        book: '',
+        tags: []
+    };
+  }
+
   getNote(id) {
     let note = this.notes.find(note => note.id === id);
     if (note && angular.isDefined(note.content)) {
@@ -36,16 +48,16 @@ export class NoteService {
   newNote(note) {
     return this.$http.post(this.APIURL + '/notes/', note).then(res => {
       this.notes.push(res.data);
-      this.books.push(res.data.books);
-      this.tags.push(res.data.tags);
+      this.books.push(res.data.book);
+      this.tags.push(res.data.tags); //update
       return res.data;
     });
   }
 
-  updateNote(id, note, book, tags) {
+  updateNote(id, note) {
     return this.$http.put(this.APIURL + '/notes/' + id, note).then(res => {
-      this.notes.push(res.data);
-      this.books.push(res.data.books);
+      this.notes.push(res.data); //update
+      this.books.push(res.data.book);
       this.tags.push(res.data.tags);
       return res.data;
     });

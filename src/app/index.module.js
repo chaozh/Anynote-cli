@@ -5,8 +5,9 @@ import { LoginController } from './login/login.controller';
 import { MainController } from './main/main.controller';
 import { NotesController } from './notes/notes.controller';
 import { PostsController } from './posts/posts.controller';
-import { NoteService } from '../app/components/note/note.service';
-import { AuthService } from '../app/components/auth/auth.service';
+import { NoteService } from '../app/components/services/note.service';
+import { PostService } from '../app/components/services/post.service';
+import { AuthService } from '../app/components/services/auth.service';
 // import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
 import { BooksMenuDirective } from '../app/components/booksMenu/booksMenu.directive';
 import { ExcerptListDirective } from '../app/components/excerptList/excerptList.directive';
@@ -23,6 +24,7 @@ angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize',
     //.service('githubContributor', GithubContributorService)
     .service('authService', AuthService)
     .service('noteService', NoteService)
+    .service('postService', PostService)
     .controller('LoginController', LoginController)
     .controller('MainController', MainController)
     .controller('NotesController', NotesController)

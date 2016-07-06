@@ -10,7 +10,7 @@ export function NoteEditorDirective() {
         },
         controller: NoteEditorController,
         controllerAs: 'vm',
-        bindToController: true,
+        bindToController: true
         // link: function(scope, elm, attr) {
 
         //       scope.$watch('noteId', (newValue, oldValue) => {
@@ -48,8 +48,10 @@ class NoteEditorController {
 
     codemirrorLoaded (_editor) {
         //fetch #line ?
+
         _editor.on('change', function(){
             //this.delta = true;
+            // change state syncing with note
         });
     }
 
@@ -62,6 +64,8 @@ class NoteEditorController {
         //setup a timer for sync with server
         setInterval(function(){
             this.$apply(function(){
+                // change note status: title,content
+
                 // Show message
                 this.saving = true;
                 // compute delta and add to the revisions

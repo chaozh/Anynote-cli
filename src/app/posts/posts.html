@@ -18,9 +18,14 @@
     <!-- <post-editor></post-editor> -->
     <div id="post-editor" class="col-xs-6 col-sm-6 col-md-6">
         <header class="post-editor-options">
-            <editor-options></editor-options>
+            <editor-options preview="posts.preview" star="posts.star"></editor-options>
+            <!-- publish button -->
+            <button class="btn btn-default" ng-click="posts.sync()" role="button">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true">Sync</span>
+            </button>
+
             <div class="post-title">
-                <input ng-model="vm.post.title" placeholder="Untitled">
+                <input ng-model="posts.post.title" placeholder="Untitled">
             </div>
 
             <div class="post-metas">

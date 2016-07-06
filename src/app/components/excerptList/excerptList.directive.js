@@ -23,6 +23,8 @@ class ExcerptListController {
         Object.assign(this, {
             $state, $stateParams
         });
+
+        this.filteredExcerpts = this.excerpts;
     }
 
     search(text) {
