@@ -2,16 +2,13 @@
 web client for Anynote
 
 # todo
-2. post drag
-3. post edit
-4. change codemirror to ace version
-5. note auto save
+1. user 
+2. note auto save
+3. change codemirror
+4. post drag
+5. post edit
 
 # related
-
-## design
-
-1. https://github.com/JoelOtter/kajero
 
 ## codemirror
 
@@ -23,9 +20,27 @@ web client for Anynote
 
 4. https://github.com/NextStepWebs/simplemde-markdown-editor
 
+5. https://github.com/foo123/codemirror-grammar
+
 ## tag editor
 
 1. https://github.com/eranhirs/jsTag
-2. https://github.com/boneskull/angular-tags
+2. https://github.com/boneskull/angular-tags **try**
 3. https://github.com/xoxco/jQuery-Tags-Input
-4. https://github.com/Pixabay/jQuery-tagEditor
+4. https://github.com/Pixabay/jQuery-tagEditor **try**
+
+## markdown editor
+
+1. https://github.com/zzzhan/markdown-notepad 
+2. https://github.com/yabwe/medium-editor edit in place like pen
+3. https://github.com/NextStepWebs/simplemde-markdown-editor tools
+
+5. https://github.com/knsv/mermaid
+6. https://github.com/jdkanani/smalleditor
+7. https://github.com/joemccann/dillinger
+
+## electron
+
+1. https://github.com/garrylachman/ElectroCRUD
+2. https://github.com/geeeeeeeeek/electronic-wechat
+3. 

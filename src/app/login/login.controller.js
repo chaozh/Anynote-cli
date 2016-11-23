@@ -18,11 +18,13 @@ export class LoginController {
             },
             rdcode: this.form.rdcode
         }).then((resp) => {
+            //sore user status in local
+            this.authService.user = JSON.parse(resp.data.user);
             this.alerts.push({type: 'success', msg: 'Login success!'});
             //redirect to origin
 
         }).catch((resp) => {
-            this.alerts.push({type: 'danger', msg: resp.statusText});
+            this.alerts.push({type: 'danger', msg: resp.data.message});
         });
     }
 

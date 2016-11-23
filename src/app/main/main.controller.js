@@ -1,10 +1,11 @@
 export class MainController {
     // deal with auth?
-    constructor () {
+    constructor (authService) {
         'ngInject';
 
-        this.awesomeThings = [];
-        this.classAnimation = '';
-        this.creationDate = 1452132385405;
+        this.authService = authService;
+        this.user = authService.user;
+
+        //AUTH_EVENTS listen
   }
 }

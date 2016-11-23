@@ -5,7 +5,7 @@ export function UsrStatusDirective() {
         restrict: 'E',
         templateUrl: 'app/components/usrStatus/usrStatus.html',
         scope: {
-            usr: '='
+
         },
         controller: UsrStatusController,
         controllerAs: 'vm',
@@ -16,22 +16,14 @@ export function UsrStatusDirective() {
 }
 
 class UsrStatusController {
-    constructor (authService) {
+    constructor (authService, userService) {
         'ngInject';
 
-        this.usr = {
-            id: 1,
-            nickName: 'Yeoman',
-            avatarPath: 'assets/images/yeoman.png'
-        };
         this.authService = authService;
+        this.isLogin = this.userService.user;
     }
 
     logout() {
         this.authService.logout();
-    }
-
-    isAuthorized() {
-        return this.authService.isAuthenticated();
     }
 }

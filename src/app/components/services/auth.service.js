@@ -9,7 +9,7 @@ export class AuthService {
         this.credentials = {};
     }
 
-    checkPermission() {
+    isAuthenticated() {
         return this.$auth.isAuthenticated(); //permission
     }
 
@@ -19,11 +19,6 @@ export class AuthService {
 
     login(credentials, options) {
         return this.$auth.login(credentials, options);
-    }
-
-    isAuthenticated() {
-        return this.$auth.isAuthenticated();
-        //return !!this.credentials.userId;
     }
 
     logout() {

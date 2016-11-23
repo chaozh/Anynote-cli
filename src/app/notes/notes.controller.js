@@ -23,7 +23,7 @@ export class NotesController {
         } else {
             this.note = this.noteService.getEmptyNote();
         }
-        console.log(this.note);
+        //console.log(this.note);
         //watch sync event
         //this.$watch(NOTE_EVENTS.noteUpdated, this.sync);
     }

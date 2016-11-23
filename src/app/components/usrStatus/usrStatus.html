@@ -1,18 +1,17 @@
-<div class="usr-login" ng-show="{{vm.isAuthorized() == false}}">
+<div class="user-login" ng-show="!vm.isLogin">
     <ul class="nav navbar-nav">
         <li><a ui-sref="signup"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
         <li><a ui-sref="signin"><span class="glyphicon glyphicon-log-in"></span>Sign In</a></li>
     </ul>
 </div>
-<div class="usr-status" dropdown dropdown-append-to-body ng-show="{{vm.isAuthorized() == true}}">
-      <a class="usr-avatar dropdown-toggle" type="button" id="usr-status-options" dropdown-toggle>
-        <img src="{{vm.usr.avatarPath}}" alt="{{vm.usr.nickName}}" class="img-circle">
+<div class="user-status" uib-dropdown uib-dropdown-append-to-body ng-show="vm.isLogin">
+      <a class="user-avatar dropdown-toggle" type="button" id="user-status-options" uib-dropdown-toggle>
+        <img src="{{vm.user.avatarPath}}" alt="{{vm.user.nickName}}" class="user-avatar-img img-circle">
         <span class="caret"></span>
       </a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="usr-status-options">
-        <!--  usr info -->
-        <li class="dropdown-header">{{vm.usr.nickName}}</li>
-        <li><a href="#">Home</a></li>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="user-status-options">
+        <!--  user info -->
+        <li class="dropdown-header">{{vm.user.nickName}}</li>
         <li><a href="#">My Account</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span>Help</a></li>
