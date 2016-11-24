@@ -15,7 +15,28 @@
             <li ng-class="{active: $uiRoute}"><a ui-sref="#"><span class="glyphicon glyphicon-leaf"></span> Users</a></li>
             <li ng-class="{active: $uiRoute}"><a ui-sref="#"><span class="glyphicon glyphicon-phone"></span> Apps</a></li>
 
-            <li><usr-status></usr-status></li>
+            <li>
+                <div class="user-login" ng-show="!main.isLogin">
+                    <ul class="nav navbar-nav">
+                        <li><a ui-sref="signup"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
+                        <li><a ui-sref="signin"><span class="glyphicon glyphicon-log-in"></span>Sign In</a></li>
+                    </ul>
+                </div>
+                <div class="user-status" uib-dropdown uib-dropdown-append-to-body ng-show="main.isLogin">
+                      <a class="user-avatar dropdown-toggle" type="button" id="user-status-options" uib-dropdown-toggle>
+                        <img src="{{main.user.avatarPath}}" alt="{{main.user.nickName}}" class="user-avatar-img img-circle">
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="user-status-options">
+                        <!--  user info -->
+                        <li class="dropdown-header">{{main.user.nickName}}</li>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span>Help</a></li>
+                        <li><a href="#" ng-click="main.logout()"><span class="glyphicon glyphicon-log-out"></span>Sign Out</a></li>
+                      </ul>
+                </div><!-- /dropup -->
+            </li>
           </ul>
         </div>
      </div>
