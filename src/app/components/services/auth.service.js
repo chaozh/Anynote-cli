@@ -6,7 +6,7 @@ export class AuthService {
             $http, $auth
         });
 
-        this.credentials = {};
+        //this.credentials = {};
     }
 
     isAuthenticated() {

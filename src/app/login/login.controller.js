@@ -1,10 +1,9 @@
 export class LoginController {
-    // deal with auth?
-    constructor ($state, authService) {
+    constructor ($state, authService, userService) {
         'ngInject';
 
         Object.assign(this, {
-            $state, authService
+            $state, authService, userService
         });
         this.form = {};
         this.alerts = [];
@@ -19,12 +18,14 @@ export class LoginController {
             rdcode: this.form.rdcode
         }).then((resp) => {
             //sore user status in local
-            this.authService.user = JSON.parse(resp.data.user);
-            this.alerts.push({type: 'success', msg: 'Login success!'});
-            //redirect to origin
+            this.userService.setLocalUser(angular.fromJson(resp.data.user));
+            this.$state.go(this.$scope.prevState, this.$scope.prevParams);
 
         }).catch((resp) => {
-            this.alerts.push({type: 'danger', msg: resp.data.message});
+            this.alerts.push({
+                type: 'danger',
+                msg: data.message
+            });
         });
     }
 
@@ -37,9 +38,13 @@ export class LoginController {
             },
             rdcode: this.form.rdcode
         }).then((resp) => {
-            this.alerts.push({type: 'success', msg: 'Success create account!'});
+            this.$state.go(this.$scope.prevState, this.$scope.prevParams);
+
         }).catch((resp) => {
-            this.alerts.push({type: 'danger', msg: resp.statusText});
+            this.alerts.push({
+                type: 'danger',
+                msg: data.message
+            });
         });
     }
 

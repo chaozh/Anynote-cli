@@ -16,13 +16,13 @@
             <li ng-class="{active: $uiRoute}"><a ui-sref="#"><span class="glyphicon glyphicon-phone"></span> Apps</a></li>
 
             <li>
-                <div class="user-login" ng-show="!main.isLogin">
+                <div class="user-login" ng-show="!main.user">
                     <ul class="nav navbar-nav">
                         <li><a ui-sref="signup"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
                         <li><a ui-sref="signin"><span class="glyphicon glyphicon-log-in"></span>Sign In</a></li>
                     </ul>
                 </div>
-                <div class="user-status" uib-dropdown uib-dropdown-append-to-body ng-show="main.isLogin">
+                <div class="user-status" uib-dropdown uib-dropdown-append-to-body ng-show="main.user">
                       <a class="user-avatar dropdown-toggle" type="button" id="user-status-options" uib-dropdown-toggle>
                         <img src="{{main.user.avatarPath}}" alt="{{main.user.nickName}}" class="user-avatar-img img-circle">
                         <span class="caret"></span>
@@ -41,5 +41,6 @@
         </div>
      </div>
   </header>
+  <uib-alert ng-repeat="alert in main.alerts" type="{{alert.type}}" close="main.closeAlert($index)">{{alert.msg}}</uib-alert>
   <div ui-view></div>
 </div>

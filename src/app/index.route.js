@@ -1,4 +1,4 @@
-export function routerConfig ($stateProvider, $urlRouterProvider) {
+export function routerConfig ($stateProvider, $urlRouterProvider, USER_ROLES) {
   'ngInject';
   $stateProvider
     .state('login', {
@@ -6,7 +6,10 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
         abstract: true,
         templateUrl: 'app/login/login.html',
         controller: 'LoginController',
-        controllerAs: 'login'
+        controllerAs: 'login',
+        data: {
+            authorizedRoles: [USER_ROLES.all]
+        }
     })
     .state('signin', {
         parent: 'login',
@@ -23,7 +26,10 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       abstract: true,
       templateUrl: 'app/main/main.html',
       controller: 'MainController',
-      controllerAs: 'main'
+      controllerAs: 'main',
+        data: {
+            authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+        }
     })
     .state('notes', {
         parent: 'home',
@@ -41,10 +47,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     .state('edit', {
         parent: 'notes',
         url: '/edit/:id',
-        template: '<note-editor>',
-        resolve: {
-          loginRequired: loginRequired
-        }
+        template: '<note-editor>'
         //controller: 'NotesController',
         //controllerAs: 'notes'
     })
@@ -53,18 +56,11 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
         url: '/posts',
         templateUrl: 'app/posts/posts.html',
         controller: 'PostsController',
-        controllerAs: 'posts'
+        controllerAs: 'posts',
+        data: {
+            authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+        }
     });
 
   $urlRouterProvider.otherwise('/notes');
-
-  function loginRequired($q, $location, $auth) {
-      var deferred = $q.defer();
-      if ($auth.isAuthenticated()) {
-        deferred.resolve();
-      } else {
-        $location.path('/signin');
-      }
-      return deferred.promise;
-    }
 }

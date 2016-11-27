@@ -1,12 +1,8 @@
 # Anynote-cli
 web client for Anynote
 
-# todo
-1. user 
-2. note auto save
-3. change codemirror
-4. post drag
-5. post edit
+# TODO
+https://github.com/chaozh/Anynote-cli/projects/1
 
 # related
 
@@ -18,9 +14,7 @@ web client for Anynote
 
 3, API: http://hwzsky.com/post/wirting-codemirror-modes/
 
-4. https://github.com/NextStepWebs/simplemde-markdown-editor
-
-5. https://github.com/foo123/codemirror-grammar
+4. https://github.com/foo123/codemirror-grammar
 
 ## tag editor
 
@@ -28,16 +22,6 @@ web client for Anynote
 2. https://github.com/boneskull/angular-tags **try**
 3. https://github.com/xoxco/jQuery-Tags-Input
 4. https://github.com/Pixabay/jQuery-tagEditor **try**
-
-## markdown editor
-
-1. https://github.com/zzzhan/markdown-notepad 
-2. https://github.com/yabwe/medium-editor edit in place like pen
-3. https://github.com/NextStepWebs/simplemde-markdown-editor tools
-
-5. https://github.com/knsv/mermaid
-6. https://github.com/jdkanani/smalleditor
-7. https://github.com/joemccann/dillinger
 
 ## electron
 
