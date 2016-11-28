@@ -9,7 +9,7 @@ export class MainController {
         this.user = userService.getLocalUser();
         this.alerts = [];
 
-        //AUTH_EVENTS listen
+        //TODO: AUTH_EVENTS listen
         this.$scope.$on(this.AUTH_EVENTS.notAuthorized, (event, data) => {
             this.alerts.push({
                 type: 'danger',

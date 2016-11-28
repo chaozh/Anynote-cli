@@ -8,6 +8,18 @@ export class LoginController {
         this.form = {};
         this.alerts = [];
     }
+    // TODO:
+    changeView() {
+        // prev url
+        this.$state.go('notes');
+    }
+
+    errorHandle(resp) {
+        this.alerts.push({
+            type: 'danger',
+            msg: resp.data.message || resp.data || resp.statusText
+        });
+    }
 
     signin() {
         this.authService.login({
@@ -19,13 +31,10 @@ export class LoginController {
         }).then((resp) => {
             //sore user status in local
             this.userService.setLocalUser(angular.fromJson(resp.data.user));
-            this.$state.go(this.$scope.prevState, this.$scope.prevParams);
+            this.changeView();
 
         }).catch((resp) => {
-            this.alerts.push({
-                type: 'danger',
-                msg: data.message
-            });
+            this.errorHandle(resp);
         });
     }
 
@@ -38,13 +47,10 @@ export class LoginController {
             },
             rdcode: this.form.rdcode
         }).then((resp) => {
-            this.$state.go(this.$scope.prevState, this.$scope.prevParams);
+            this.changeView();
 
         }).catch((resp) => {
-            this.alerts.push({
-                type: 'danger',
-                msg: data.message
-            });
+            this.errorHandle(resp);
         });
     }
 

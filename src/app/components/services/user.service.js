@@ -13,6 +13,7 @@ export class UserService {
     }
 
     isAuthorized(authorizedRoles) {
+        //TODO roles
         return true;
         //return (authorizedRoles.indexOf(this.user.role) !== -1);
     }
