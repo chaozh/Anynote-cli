@@ -52,6 +52,7 @@ class NoteEditorController {
         _editor.on('change', function(){
             //this.delta = true;
             // change state syncing with note
+            this.note = _editor.getValue();
         });
     }
 
@@ -62,18 +63,19 @@ class NoteEditorController {
         var lastModel = this.baseModel;
         _editor.focus();
         //setup a timer for sync with server
-        setInterval(function(){
-            this.$apply(function(){
+        setInterval(() => {
+            this.$apply(() => {
                 // change note status: title,content
 
                 // Show message
                 this.saving = true;
                 // compute delta and add to the revisions
-                var currentModel = _editor.getValue();
-                var delta = _editor.get(lastModel, currentModel);
+                let currentModel = _editor.getValue();
+                let delta = _editor.get(lastModel, currentModel);
                 // auto update
                 if (delta) {
                     //trigger event
+
                 }
                 // update last revision
                 lastModel = currentModel;

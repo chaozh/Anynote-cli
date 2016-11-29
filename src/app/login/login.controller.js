@@ -1,24 +1,11 @@
 export class LoginController {
-    constructor ($state, authService, userService) {
+    constructor ($rootScope, $state, AUTH_EVENTS, authService, userService) {
         'ngInject';
 
         Object.assign(this, {
-            $state, authService, userService
+            $rootScope, $state, AUTH_EVENTS, authService, userService
         });
         this.form = {};
-        this.alerts = [];
-    }
-    // TODO:
-    changeView() {
-        // prev url
-        this.$state.go('notes');
-    }
-
-    errorHandle(resp) {
-        this.alerts.push({
-            type: 'danger',
-            msg: resp.data.message || resp.data || resp.statusText
-        });
     }
 
     signin() {
@@ -31,10 +18,10 @@ export class LoginController {
         }).then((resp) => {
             //sore user status in local
             this.userService.setLocalUser(angular.fromJson(resp.data.user));
-            this.changeView();
+            this.$rootScope.$broadcast(this.AUTH_EVENTS.loginSuccess);
 
         }).catch((resp) => {
-            this.errorHandle(resp);
+            this.$rootScope.$broadcast(this.AUTH_EVENTS.loginFailed, resp);
         });
     }
 
@@ -47,14 +34,10 @@ export class LoginController {
             },
             rdcode: this.form.rdcode
         }).then((resp) => {
-            this.changeView();
+            this.$rootScope.$broadcast(this.AUTH_EVENTS.loginSuccess);
 
         }).catch((resp) => {
-            this.errorHandle(resp);
+            this.$rootScope.$broadcast(this.AUTH_EVENTS.loginFailed, resp);
         });
-    }
-
-    closeAlert(index) {
-        this.alerts.splice(index, 1);
     }
 }

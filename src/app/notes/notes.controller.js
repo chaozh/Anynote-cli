@@ -1,9 +1,9 @@
 export class NotesController {
-    constructor ($state, $stateParams, noteService, NOTE_EVENTS) {
+    constructor ($scope, $state, $stateParams, noteService, NOTE_EVENTS) {
         'ngInject';
 
         Object.assign(this, {
-            $state, $stateParams, noteService, NOTE_EVENTS
+            $scope, $state, $stateParams, noteService, NOTE_EVENTS
         });
 
         this.favorsData = [];
@@ -23,9 +23,8 @@ export class NotesController {
         } else {
             this.note = this.noteService.getEmptyNote();
         }
-        //console.log(this.note);
         //watch sync event
-        //this.$watch(NOTE_EVENTS.noteUpdated, this.sync);
+        //this.$scope.$on(NOTE_EVENTS.noteUpdated, this.sync);
     }
 
     getTags () {

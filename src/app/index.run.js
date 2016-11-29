@@ -8,7 +8,7 @@ export function runBlock ($rootScope, $state, AUTH_EVENTS, authService, userServ
 
     if (next.name !== 'signin' && next.name !== 'signup'){
         if (authService.isAuthenticated()) {
-
+            // permission check
             if ('data' in next && 'authorizedRoles' in next.data) {
                 let authorizedRoles = next.data.authorizedRoles;
                 if (!userService.isAuthorized(authorizedRoles)) {
@@ -20,6 +20,7 @@ export function runBlock ($rootScope, $state, AUTH_EVENTS, authService, userServ
         } else {
             event.preventDefault();
             // user is not logged in
+            //$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
             $state.go('signin');
         }
     }

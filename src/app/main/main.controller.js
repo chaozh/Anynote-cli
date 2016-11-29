@@ -10,6 +10,15 @@ export class MainController {
         this.alerts = [];
 
         //TODO: AUTH_EVENTS listen
+        this.$scope.$on(this.AUTH_EVENTS.loginSuccess, (event, data) => {
+            // prev url
+            this.$state.go('notes');
+        });
+
+        this.$scope.$on(this.AUTH_EVENTS.loginFailed, (event, data) => {
+            this.errorHandle(data)
+        });
+
         this.$scope.$on(this.AUTH_EVENTS.notAuthorized, (event, data) => {
             this.alerts.push({
                 type: 'danger',
@@ -39,4 +48,10 @@ export class MainController {
     }
 
     // handle all errors
+    errorHandle(resp) {
+        this.alerts.push({
+            type: 'danger',
+            msg: resp.data.message || resp.data || resp.statusText
+        });
+    }
 }
