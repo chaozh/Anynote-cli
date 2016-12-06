@@ -20,8 +20,7 @@
     "Sortable": "~1.4.2",
     "satellizer": "^0.14.0",
     "ngstorage": "^0.3.11",
-    "simplemde": "~1.11.2",
-    "angular-tags": "~0.2.10"
+    "simplemde": "~1.11.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"

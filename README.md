@@ -11,7 +11,10 @@ login:
 
 note:
 
+editor:
 
+1. simplemde
+https://github.com/NextStepWebs/simplemde-markdown-editor
 
 # related
 

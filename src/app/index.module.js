@@ -5,7 +5,8 @@ import { LoginController } from './login/login.controller';
 import { MainController } from './main/main.controller';
 import { NotesController } from './notes/notes.controller';
 import { PostsController } from './posts/posts.controller';
-import { NoteService } from '../app/components/services/note.service';
+import { NotesService } from '../app/components/services/notes.service';
+import { NoteEditorService } from '../app/components/services/noteEditor.service';
 import { PostService } from '../app/components/services/post.service';
 import { AuthService } from '../app/components/services/auth.service';
 import { UserService } from '../app/components/services/user.service';
@@ -18,13 +19,14 @@ import { PostEditorDirective } from '../app/components/postEditor/postEditor.dir
 import { NoteEditorDirective } from '../app/components/noteEditor/noteEditor.directive';
 
 
-angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ng-sortable', 'satellizer', 'ngStorage', 'decipher.tags'])
+angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ng-sortable', 'satellizer', 'ngStorage','simplemde'])
     .config(config)
     .config(routerConfig)
     .run(runBlock)
     //.service('githubContributor', GithubContributorService)
     .service('authService', AuthService)
-    .service('noteService', NoteService)
+    .service('notesService', NotesService)
+    .service('noteEditorService', NoteEditorService)
     .service('postService', PostService)
     .service('userService', UserService)
     .controller('LoginController', LoginController)

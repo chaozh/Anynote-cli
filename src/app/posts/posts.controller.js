@@ -1,9 +1,9 @@
 export class PostsController {
-    constructor ($state, $stateParams, noteService, postService, NOTE_EVENTS) {
+    constructor ($state, $stateParams, notesService, postService, NOTE_EVENTS) {
         'ngInject';
 
         Object.assign(this, {
-            $state, $stateParams, noteService, postService, NOTE_EVENTS
+            $state, $stateParams, notesService, postService, NOTE_EVENTS
         });
 
         this.favorsData = [1,2,3];

@@ -52,7 +52,9 @@ function simplemdeDirective() {
           options.onLoad(editor);
         }
 
-        scope.simplemde.instance = editor;
+        scope.simplemde = {
+            instance : editor
+        };
     }
 
     function newEditor(element, options){
@@ -63,7 +65,7 @@ function simplemdeDirective() {
     function configEditorOptionsWatcher(editor, options, scope) {
         if (!options) { return; }
 
-        var editorDefaultsKeys = Object.keys(window.SimpleMDE.defaults);
+        var editorDefaultsKeys = Object.keys(options);
         scope.$watch(options, updateOptions, true);
 
         function updateOptions(newValues, oldValue) {

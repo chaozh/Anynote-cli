@@ -1,9 +1,9 @@
 export class NotesController {
-    constructor ($scope, $state, $stateParams, noteService, NOTE_EVENTS) {
+    constructor ($scope, $state, $stateParams, noteEditorService, NOTE_EVENTS) {
         'ngInject';
 
         Object.assign(this, {
-            $scope, $state, $stateParams, noteService, NOTE_EVENTS
+            $scope, $state, $stateParams, noteEditorService, NOTE_EVENTS
         });
 
         this.favorsData = [];
@@ -17,24 +17,24 @@ export class NotesController {
         //compare id & noteId, watch
         this.id = this.$stateParams.id;
         if (angular.isNumber(this.id)){
-            this.noteService.getNote(this.id).then(note => {
+            this.noteEditorService.getNote(this.id).then(note => {
                 this.note = note;
             });
         } else {
-            this.note = this.noteService.getEmptyNote();
+            this.note = this.noteEditorService.getEmptyNote();
         }
         //watch sync event
         //this.$scope.$on(NOTE_EVENTS.noteUpdated, this.sync);
     }
 
     getTags () {
-        this.noteService.getTags().then(tags => {
+        this.noteEditorService.getTags().then(tags => {
             this.tagsData = tags;
         });
     }
 
     getExcerpts () {
-        this.noteService.getNotes().then(notes => {
+        this.noteEditorService.getNotes().then(notes => {
             this.excerptsData = notes;
         });
 
@@ -43,11 +43,11 @@ export class NotesController {
     sync() {
         //deal with content also with tags & book
         if(angular.isNumber(this.note.id)) {
-            this.noteService.updateNote(this.note.id, this.note).then(note => {
+            this.noteEditorService.updateNote(this.note.id, this.note).then(note => {
                 this.note = note;
             });
         } else {
-            this.noteService.newNote(this.note).then(note => {
+            this.noteEditorService.newNote(this.note).then(note => {
                 this.note = note;
             });
         }

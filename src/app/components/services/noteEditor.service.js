@@ -1,25 +1,15 @@
-export class NoteService {
+export class NoteEditorService {
  //TODO: Note vs Book
-  constructor($http, $q, APIURL, moment) {
+  constructor($http, $q, APIURL, moment, notesService) {
     'ngInject';
 
     Object.assign(this, {
-      $http, $q, APIURL, moment
+      $http, $q, APIURL, moment, notesService
     });
 
     this.notes = [];
     this.books = [];
     this.tags = [];
-  }
-
-  getNotes() {
-    if (this.notes.length) {
-      return this.$q.resolve(this.notes);
-    }
-    return this.$http.get(this.APIURL + '/notes').then(res => {
-      this.notes = res.data.notes;
-      return this.notes;
-    });
   }
 
   getEmptyNote() {
@@ -39,14 +29,24 @@ export class NoteService {
     if (note && angular.isDefined(note.content)) {
       return this.$q.resolve(note);
     }
-    return this.$http.get(this.APIURL + '/notes/' + id).then(res => {
+    return this.NotesService.getNote(id).then(res => {
       let note = this.notes.find(note => note.id === id) || {};
       return Object.assign(note, res.data.note);
     });
   }
 
+  getNotes() {
+    return this.notesService.getNotes().then(res => {
+      let notes = res.data.notes;
+      this.notes.push(note);
+      this.books.push(note.book);
+      this.tags.push(note.tags); //update
+      return res.data;
+    });
+  }
+
   newNote(note) {
-    return this.$http.post(this.APIURL + '/notes/', note).then(res => {
+    return this.NotesService.newNote(id).then(res => {
       let note = res.data.note;
       this.notes.push(note);
       this.books.push(note.book);
@@ -56,7 +56,12 @@ export class NoteService {
   }
 
   updateNote(id, note) {
-    return this.$http.put(this.APIURL + '/notes/' + id, note).then(res => {
+    let _note = this.notes.find(note => note.id === id);
+    if (_note && angular.isDefined(_note.content)) {
+        _note = note;
+    }
+
+    return this.NotesService.updateNote(id, note).then(res => {
       let note = res.data.note;
       this.notes.push(note); //update
       this.books.push(note.book);
@@ -66,7 +71,7 @@ export class NoteService {
   }
 
   deleteNote(id) {
-    return this.$http.delete(this.APIURL + '/notes/' + id).then(res => {
+    return this.NotesService.deleteNote(id).then(res => {
       this.notes = [];
       this.books = [];
       this.tags = [];
