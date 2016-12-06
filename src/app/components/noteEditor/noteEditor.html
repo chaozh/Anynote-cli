@@ -1,5 +1,6 @@
 <div class="edit-content">
-    <div class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.codemirrorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="vm.editorOptions"></div>
+    <textarea class="editor-body" simplemde="{ onLoad : vm.editorLoaded }" simplemde-opts="vm.editorOptions" ng-model="vm.note.content"></textarea>
+    <!-- <textarea class="editor-body" ng-model="vm.note.content" ui-codemirror="{ onLoad : vm.editorLoaded }" ui-refresh="vm.refresh" ui-codemirror-opts="vm.editorOptions"></textarea> -->
     <!-- using github markdown style to render -->
     <div ng-show="vm.preview" ng-bind-html-unsafe="vm.note.html" class="markdown-body"></div>
 </div>

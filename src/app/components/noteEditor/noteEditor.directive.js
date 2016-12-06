@@ -3,38 +3,34 @@ export function NoteEditorDirective() {
 
     let directive = {
         restrict: 'E',
+        require: 'simplemde',
         templateUrl: 'app/components/noteEditor/noteEditor.html',
         scope: {
-            note: '=',
-            preview: '='
+            note: '='
         },
         controller: NoteEditorController,
         controllerAs: 'vm',
         bindToController: true
-        // link: function(scope, elm, attr) {
-
-        //       scope.$watch('noteId', (newValue, oldValue) => {
-        //           if (newValue !== oldValue) {
-        //             // You actions here
-        //             console.log("I got the new value! ", newValue);
-        //           }
-        //       }, true);
-        //}
+        link: function(scope, elm, attr, simplemde) {
+            var editor = simplemde.get();
+            this.scope.editor = editor;
+        }
     };
 
     return directive;
 }
 
 class NoteEditorController {
-    constructor ($state, $stateParams) {
+    constructor ($scope, $state, $stateParams) {
         'ngInject';
 
          Object.assign(this, {
-            $state, $stateParams
+            $scope, $state, $stateParams
         });
 
         this.saving = false;
         this.delta = false;
+
         this.revisions = [];
         this.revNumber = 0;
         //for editor
@@ -43,17 +39,12 @@ class NoteEditorController {
             lineWrapping: true
             //lineNumbers: true
         };
-        this.codemirrorLoaded = this.codemirrorLoaded.bind(this);
+        this.editorLoaded = this.editorLoaded.bind(this);
     }
 
-    codemirrorLoaded (_editor) {
+    editorLoaded (editor) {
         //fetch #line ?
 
-        _editor.on('change', function(){
-            //this.delta = true;
-            // change state syncing with note
-            this.note = _editor.getValue();
-        });
     }
 
     autoUpdate(_editor) {
