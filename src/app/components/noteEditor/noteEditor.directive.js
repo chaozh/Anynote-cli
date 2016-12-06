@@ -10,7 +10,7 @@ export function NoteEditorDirective() {
         },
         controller: NoteEditorController,
         controllerAs: 'vm',
-        bindToController: true
+        bindToController: true,
         link: function(scope, elm, attr, simplemde) {
             var editor = simplemde.get();
             this.scope.editor = editor;

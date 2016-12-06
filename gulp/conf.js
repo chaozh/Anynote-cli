@@ -27,21 +27,20 @@ exports.wiredep = {
   exclude: [/\/bootstrap\.js$/, /\/bootstrap-sass\/.*\.js/, /\/bootstrap\.css/],
   directory: 'bower_components',
   overrides: {
-    'codemirror': {
+    'simplemde': {
         main: [
-            'lib/codemirror.js',
-            //'lib/codemirror.css',
-            'addon/hint/show-hint.js',
-            'addon/hint/show-hint.css',
-            'addon/mode/overlay.js',
-            'mode/markdown/markdown.js',
-            'mode/gfm/gfm.js'
+            'dist/simplemde.min.js'
         ]
     },
     'Sortable': {
         main: [
             'Sortable.min.js',
             'ng-sortable.js'
+        ]
+    },
+    'angular-tags': {
+        main: [
+            'dist/angular-tags-0.2.10.js'
         ]
     }
   }

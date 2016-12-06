@@ -18,7 +18,7 @@ import { PostEditorDirective } from '../app/components/postEditor/postEditor.dir
 import { NoteEditorDirective } from '../app/components/noteEditor/noteEditor.directive';
 
 
-angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.codemirror', 'ng-sortable', 'satellizer', 'ngStorage', 'decipher.tags', 'simplemde'])
+angular.module('anyNoteCli', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ui.router', 'ui.bootstrap', 'ng-sortable', 'satellizer', 'ngStorage', 'decipher.tags'])
     .config(config)
     .config(routerConfig)
     .run(runBlock)
