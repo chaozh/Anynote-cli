@@ -18,10 +18,10 @@ export function runBlock ($rootScope, $state, AUTH_EVENTS, authService, userServ
                 }
             }
         } else {
-            event.preventDefault();
+            //event.preventDefault();
             // user is not logged in
             //$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
-            $state.go('signin');
+            //$state.go('signin');
         }
     }
   });

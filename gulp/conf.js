@@ -29,18 +29,14 @@ exports.wiredep = {
   overrides: {
     'simplemde': {
         main: [
-            'dist/simplemde.min.js'
+            'dist/simplemde.min.js',
+            'dist/simplemde.min.css'
         ]
     },
     'Sortable': {
         main: [
             'Sortable.min.js',
             'ng-sortable.js'
-        ]
-    },
-    'angular-tags': {
-        main: [
-            'dist/angular-tags-0.2.10.js'
         ]
     }
   }

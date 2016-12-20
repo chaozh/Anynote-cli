@@ -92,6 +92,7 @@ function simplemdeDirective() {
                     ngModel.$setViewValue(newValue);
                 });
             }
+            //event trigger
         });
 
         ngModel.$render = function() {

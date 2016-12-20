@@ -3,18 +3,13 @@ export function NoteEditorDirective() {
 
     let directive = {
         restrict: 'E',
-        require: 'simplemde',
         templateUrl: 'app/components/noteEditor/noteEditor.html',
         scope: {
             note: '='
         },
         controller: NoteEditorController,
         controllerAs: 'vm',
-        bindToController: true,
-        link: function(scope, elm, attr, simplemde) {
-            var editor = simplemde.get();
-            this.scope.editor = editor;
-        }
+        bindToController: true
     };
 
     return directive;
@@ -36,14 +31,20 @@ class NoteEditorController {
         //for editor
         this.editorOptions = {
             mode:'note',
-            lineWrapping: true
-            //lineNumbers: true
+            renderingConfig: {
+                singleLineBreaks: false,
+                codeSyntaxHighlighting: true
+            }
         };
         this.editorLoaded = this.editorLoaded.bind(this);
     }
 
     editorLoaded (_editor) {
         //fetch #line ?
+        this.editor = _editor;
+        console.log(this);
+        _editor.codemirror.on("change", function(){
 
+        });
     }
 }
