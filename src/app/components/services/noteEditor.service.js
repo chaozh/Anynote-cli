@@ -46,7 +46,7 @@ export class NoteEditorService {
   }
 
   newNote(note) {
-    return this.NotesService.newNote(id).then(res => {
+    return this.notesService.newNote(note).then(res => {
       let note = res.data.note;
       this.notes.push(note);
       this.books.push(note.book);

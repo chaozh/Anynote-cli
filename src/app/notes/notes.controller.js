@@ -14,17 +14,21 @@ export class NotesController {
         this.getExcerpts();
 
         this.preview = false;
+        this.saving = false;
         //compare id & noteId, watch
         this.id = this.$stateParams.id;
         if (angular.isNumber(this.id)){
             this.noteEditorService.getNote(this.id).then(note => {
                 this.note = note;
+                // trigger load event
             });
         } else {
             this.note = this.noteEditorService.getEmptyNote();
+            // trigger init event
         }
+
         //watch sync event
-        //this.$scope.$on(NOTE_EVENTS.noteUpdated, this.sync);
+        //this.$scope.$on(NOTE_EVENTS.noteUpdate, this.sync);
     }
 
     getTags () {
@@ -45,10 +49,14 @@ export class NotesController {
         if(angular.isNumber(this.note.id)) {
             this.noteEditorService.updateNote(this.note.id, this.note).then(note => {
                 this.note = note;
+                // trigger sync event
             });
         } else {
+            console.log(this.note);
+
             this.noteEditorService.newNote(this.note).then(note => {
                 this.note = note;
+                // trigger sync event
             });
         }
 

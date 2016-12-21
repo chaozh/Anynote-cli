@@ -1,7 +1,14 @@
 angular.module('simplemde', [])
-       .directive('simplemde', simplemdeDirective);
+       .constant('SIMPLEMDE_EVENTS', {
+            mdeInit: 'mde-init',
+            mdeUpdating: 'mde-updating',
+            mdeUpdated: 'mde-updated',
+            mdeRender: 'mde-render'
 
-function simplemdeDirective() {
+        })
+       .directive('simplemde', ['SIMPLEMDE_EVENTS', simplemdeDirective]);
+
+function simplemdeDirective(SIMPLEMDE_EVENTS) {
     return {
       restrict: 'EA',
       require: '?ngModel',
@@ -39,7 +46,7 @@ function simplemdeDirective() {
 
         configNgModelLink(editor, ngModel, scope);
 
-        scope.$on('SimpleMDE', function(event, callback) {
+        scope.$on(SIMPLEMDE_EVENTS.mdeInit, function(event, callback) {
           if (angular.isFunction(callback)) {
             callback(editor);
           } else {
@@ -88,15 +95,19 @@ function simplemdeDirective() {
         editor.codemirror.on('change', function(instance) {
             var newValue = instance.getValue();
             if (newValue !== ngModel.$viewValue) {
+                scope.$emit(SIMPLEMDE_EVENTS.mdeUpdating, newValue);
                 scope.$applyAsync(function() {
                     ngModel.$setViewValue(newValue);
+                    //update event trigger
+                    scope.$emit(SIMPLEMDE_EVENTS.mdeUpdated, newValue);
                 });
             }
-            //event trigger
         });
 
         ngModel.$render = function() {
           var val = ngModel.$viewValue || '';
+          //render event trigger
+          scope.$emit(SIMPLEMDE_EVENTS.mdeRender, val);
           editor.value(val);
         };
     }

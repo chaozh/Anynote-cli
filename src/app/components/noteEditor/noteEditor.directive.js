@@ -23,9 +23,7 @@ class NoteEditorController {
             $scope, $state, $stateParams
         });
 
-        this.saving = false;
         this.delta = false;
-
         this.revisions = [];
         this.revNumber = 0;
         //for editor
@@ -42,9 +40,8 @@ class NoteEditorController {
     editorLoaded (_editor) {
         //fetch #line ?
         this.editor = _editor;
-        console.log(this);
-        _editor.codemirror.on("change", function(){
-
-        });
+        // watch content tag
+        //this.$scope.$on(NOTE_EVENTS.noteUpdated, this.sync);
+        // timer to revisions & update
     }
 }
