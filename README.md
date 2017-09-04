@@ -2,14 +2,10 @@
 web client for Anynote
 
 # TODO
-https://github.com/chaozh/Anynote-cli/projects/1
-
-login:
-
-1. permission check
-2. prev url
 
 note:
+2. sync
+3. tag / ?? book
 
 editor:
 

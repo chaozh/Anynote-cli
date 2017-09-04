@@ -1,9 +1,9 @@
 export class NotesController {
-    constructor ($scope, $state, $stateParams, noteEditorService, NOTE_EVENTS) {
+    constructor ($scope, $state, $stateParams, $log, noteEditorService, NOTE_EVENTS) {
         'ngInject';
 
         Object.assign(this, {
-            $scope, $state, $stateParams, noteEditorService, NOTE_EVENTS
+            $scope, $state, $stateParams, $log, noteEditorService, NOTE_EVENTS
         });
 
         this.favorsData = [];
@@ -46,15 +46,31 @@ export class NotesController {
 
     sync() {
         //deal with content also with tags & book
-        if(angular.isNumber(this.note.id)) {
-            this.noteEditorService.updateNote(this.note.id, this.note).then(note => {
+        var note_ = this.note;
+        if (note_.content === "") {
+            // no need for publish
+            return;
+        }
+
+        // TODO
+        if (note_.title === "") {
+            note_.title = note_.content.substring(20);
+            note_.url = note_.title;
+        }
+        // fetch user from global
+        note_.UID = this.$scope.main.user.UID;
+        // TODO
+        note_.url = note_.title;
+        this.$log.warn(note_);
+
+        if(angular.isNumber(note_.id)) {
+            this.noteEditorService.updateNote(note_.id, note_).then(note => {
                 this.note = note;
                 // trigger sync event
             });
         } else {
-            console.log(this.note);
 
-            this.noteEditorService.newNote(this.note).then(note => {
+            this.noteEditorService.newNote(note_).then(note => {
                 this.note = note;
                 // trigger sync event
             });

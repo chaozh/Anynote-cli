@@ -38,9 +38,13 @@ export class NoteEditorService {
   getNotes() {
     return this.notesService.getNotes().then(res => {
       let notes = res.data.notes;
-      this.notes.push(note);
-      this.books.push(note.book);
-      this.tags.push(note.tags); //update
+      for (var note in notes) {
+        this.notes.push(note);
+        // TODO: need update
+        this.books.push(note.book);
+        this.tags.push(note.tags);
+      }
+
       return res.data;
     });
   }
@@ -49,8 +53,9 @@ export class NoteEditorService {
     return this.notesService.newNote(note).then(res => {
       let note = res.data.note;
       this.notes.push(note);
+      // TODO: need update
       this.books.push(note.book);
-      this.tags.push(note.tags); //update
+      this.tags.push(note.tags);
       return res.data;
     });
   }

@@ -23,8 +23,9 @@
                     </ul>
                 </div>
                 <div class="user-status" uib-dropdown uib-dropdown-append-to-body ng-show="main.user">
+                    {{main.user.nickname}}
                       <a class="user-avatar dropdown-toggle" type="button" id="user-status-options" uib-dropdown-toggle>
-                        <img src="{{main.user.avatarPath}}" alt="{{main.user.nickName}}" class="user-avatar-img img-circle">
+                        <img src="{{main.user.avatarPath}}" alt="{{main.user.nickname}}" class="user-avatar-img img-circle">
                         <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu" role="menu" aria-labelledby="user-status-options">
