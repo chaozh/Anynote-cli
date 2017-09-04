@@ -40,11 +40,14 @@ export class NotesController {
     getExcerpts () {
         this.noteEditorService.getNotes().then(notes => {
             this.excerptsData = notes;
+            // excerpt change event
         });
 
     }
 
     sync() {
+        this.excerptsData = [{title:'test', content: '<p>good</p>'},
+        {title:'test2', content: '<p>good</p>'}];
         //deal with content also with tags & book
         var note_ = this.note;
         if (note_.content === "") {
@@ -67,12 +70,14 @@ export class NotesController {
             this.noteEditorService.updateNote(note_.id, note_).then(note => {
                 this.note = note;
                 // trigger sync event
+
             });
         } else {
 
             this.noteEditorService.newNote(note_).then(note => {
                 this.note = note;
                 // trigger sync event
+
             });
         }
 

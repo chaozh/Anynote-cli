@@ -11,7 +11,6 @@ export class MainController {
 
         //TODO: AUTH_EVENTS listen
         this.$scope.$on(this.AUTH_EVENTS.loginSuccess, (event, data) => {
-            console.log("success");
             // refresh nav
             this.alerts = [];
             this.user = userService.getLocalUser();
