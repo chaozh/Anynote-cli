@@ -3,6 +3,10 @@ web client for Anynote
 
 # TODO
 
+login:
+1. permission check 
+=>notes => signin => notes =(logout)=> signin
+
 note:
 2. sync
 3. tag / ?? book

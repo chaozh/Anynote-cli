@@ -2,7 +2,7 @@ export function runBlock ($rootScope, $state, AUTH_EVENTS, authService, userServ
   'ngInject';
   $log.debug('runBlock end');
   //Authorized state check
-  $rootScope.$on('$stateChangeStart',  (event, next, nextParams, prev, prevParams) => {
+  /*$rootScope.$on('$stateChangeStart',  (event, next, nextParams, prev, prevParams) => {
 
     if (next.name !== 'signin' && next.name !== 'signup') {
 
@@ -27,5 +27,5 @@ export function runBlock ($rootScope, $state, AUTH_EVENTS, authService, userServ
             $state.go('signin');
         }
     }
-  });
+  });*/
 }

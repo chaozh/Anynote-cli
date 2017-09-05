@@ -21,14 +21,18 @@ export class NotesController {
             this.noteEditorService.getNote(this.id).then(note => {
                 this.note = note;
                 // trigger load event
+                this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, note);
             });
         } else {
             this.note = this.noteEditorService.getEmptyNote();
             // trigger init event
+            this.$scope.$broadcast(this.NOTE_EVENTS.noteInit, this.note);
         }
 
         //watch sync event
-        //this.$scope.$on(NOTE_EVENTS.noteUpdate, this.sync);
+        // this.$scope.$on(this.NOTE_EVENTS.noteUpdate, (event, data) => {
+        //     this.sync();
+        // });
     }
 
     getTags () {
@@ -41,13 +45,12 @@ export class NotesController {
         this.noteEditorService.getNotes().then(notes => {
             this.excerptsData = notes;
             // excerpt change event
+            this.$scope.$broadcast(this.NOTE_EVENTS.noteAllLoaded, notes);
         });
 
     }
 
     sync() {
-        this.excerptsData = [{title:'test', content: '<p>good</p>'},
-        {title:'test2', content: '<p>good</p>'}];
         //deal with content also with tags & book
         var note_ = this.note;
         if (note_.content === "") {
@@ -64,20 +67,20 @@ export class NotesController {
         note_.UID = this.$scope.main.user.UID;
         // TODO
         note_.url = note_.title;
-        this.$log.warn(note_);
+        this.$log.info(note_);
 
         if(angular.isNumber(note_.id)) {
             this.noteEditorService.updateNote(note_.id, note_).then(note => {
                 this.note = note;
                 // trigger sync event
-
+                this.$scope.$broadcast(this.NOTE_EVENTS.noteSync, this.note);
             });
         } else {
 
             this.noteEditorService.newNote(note_).then(note => {
                 this.note = note;
                 // trigger sync event
-
+                this.$scope.$broadcast(this.NOTE_EVENTS.noteSync, this.note);
             });
         }
 

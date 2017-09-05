@@ -17,14 +17,17 @@ export function ExcerptListDirective() {
 }
 
 class ExcerptListController {
-    constructor ($state, $stateParams) {
+    constructor ($scope, $state, $stateParams, NOTE_EVENTS) {
         'ngInject';
 
         Object.assign(this, {
-            $state, $stateParams
+            $scope, $state, $stateParams, NOTE_EVENTS
         });
 
-        this.filteredExcerpts = this.excerpts;
+        // fetched from remote
+        this.$scope.$on(this.NOTE_EVENTS.noteAllLoaded, (notes) => {
+            this.filteredExcerpts = this.excerpts;
+        });
     }
 
     search(text) {
@@ -37,9 +40,7 @@ class ExcerptListController {
           if (excerpt.title.toLowerCase().includes(text)) {
             return true;
           }
-          // if (excerpt.categories.find(x => x.toLowerCase().includes(text))) {
-          //   return true;
-          // }
+
           if (excerpt.tags.find(x => x.toLowerCase().includes(text))) {
             return true;
           }

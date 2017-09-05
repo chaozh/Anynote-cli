@@ -6,12 +6,12 @@ angular
 .constant('moment', moment)
 .constant('APIURL', '/api')
 .constant('NOTE_EVENTS', {
-    noteInit: 'note-init',
-    noteLoaded: 'note-loaded',
-    noteUpdate: 'note-update',
-    noteRender: 'note-render',
-    noteSync: 'note-sync'
-
+    noteInit: 'note-init', //created in local
+    noteLoaded: 'note-loaded', // pull from remote
+    noteUpdate: 'note-update', // update in local
+    noteRender: 'note-render', // html generated
+    noteSync: 'note-sync', // push to remote
+    noteAllLoaded: 'note-all-loaded' // all notes pull from remote
 })
 .constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',
