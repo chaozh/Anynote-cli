@@ -8,7 +8,8 @@ login:
 =>notes => signin => notes =(logout)=> signin
 
 note:
-2. sync
+2. sync / edit mode fail!
+data flow: notes.ctrl(this.note) <=> editor.dir => simplemde <=> jquery
 3. tag / ?? book
 
 editor:

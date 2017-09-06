@@ -31,7 +31,7 @@ export function routerConfig ($stateProvider, $urlRouterProvider, USER_ROLES) {
     })
     .state('notes', {
         parent: 'main',
-        url: '/notes',
+        url: '/notes/:id',
         templateUrl: 'app/notes/notes.html',
         controller: 'NotesController',
         controllerAs: 'notes',
@@ -44,13 +44,6 @@ export function routerConfig ($stateProvider, $urlRouterProvider, USER_ROLES) {
         //         template: '<note-editor>'
         //     }
         // }
-    })
-    .state('edit', {
-        parent: 'notes',
-        url: '/edit/:id',
-        template: '<note-editor>'
-        //controller: 'NotesController',
-        //controllerAs: 'notes'
     })
     .state('posts', {
         parent: 'main',

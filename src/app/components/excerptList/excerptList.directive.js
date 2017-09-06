@@ -49,7 +49,9 @@ class ExcerptListController {
 
     edit(id) {
         //trigger refresh event
-        this.$state.go('notes.edit', { id: id });
+        // TODO cause refesh
+        //this.$state.go('notes', { id: id });
+        this.$scope.$emit(this.NOTE_EVENTS.noteEdit, id);
     }
 
     share() {

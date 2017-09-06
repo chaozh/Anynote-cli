@@ -11,7 +11,9 @@ angular
     noteUpdate: 'note-update', // update in local
     noteRender: 'note-render', // html generated
     noteSync: 'note-sync', // push to remote
-    noteAllLoaded: 'note-all-loaded' // all notes pull from remote
+
+    noteAllLoaded: 'note-all-loaded', // all notes pull from remote
+    noteEdit: 'note-edit'
 })
 .constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',

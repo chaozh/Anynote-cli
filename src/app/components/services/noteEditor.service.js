@@ -15,7 +15,7 @@ export class NoteEditorService {
   getEmptyNote() {
     return {
         title: '',
-        content: '',
+        content: 'good',
         html: '',
         status: 'draft',
         date: this.moment().format(),
@@ -25,14 +25,16 @@ export class NoteEditorService {
   }
 
   getNote(id) {
-    let note = this.notes.find(note => note.id === id);
-    if (note && angular.isDefined(note.content)) {
-      return this.$q.resolve(note);
+    if (id && angular.isNumber(id)) {
+        let note = this.notes.find(note => note.id === id);
+        if (note && angular.isDefined(note.content)) {
+          return this.$q.resolve(note);
+        }
+        return this.NotesService.getNote(id).then(res => {
+          let note = this.notes.find(note => note.id === id) || {};
+          return Object.assign(note, res.data.note);
+        });
     }
-    return this.NotesService.getNote(id).then(res => {
-      let note = this.notes.find(note => note.id === id) || {};
-      return Object.assign(note, res.data.note);
-    });
   }
 
   getNotes() {

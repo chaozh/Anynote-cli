@@ -13,7 +13,7 @@ export class NotesController {
         this.excerptsData = [];
         this.getExcerpts();
 
-        this.preview = false;
+        this.preview = true;
         this.saving = false;
         //compare id & noteId, watch
         this.id = this.$stateParams.id;
@@ -33,6 +33,14 @@ export class NotesController {
         // this.$scope.$on(this.NOTE_EVENTS.noteUpdate, (event, data) => {
         //     this.sync();
         // });
+        this.$scope.$on(this.NOTE_EVENTS.noteEdit, (event, data) => {
+            this.id = data;
+            this.noteEditorService.getNote(this.id).then(note => {
+                this.note = note;
+                // trigger load event
+                this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, note);
+            });
+        });
     }
 
     getTags () {
@@ -52,6 +60,7 @@ export class NotesController {
 
     sync() {
         //deal with content also with tags & book
+        this.note = this.noteEditorService.getEmptyNote();
         var note_ = this.note;
         if (note_.content === "") {
             // no need for publish
