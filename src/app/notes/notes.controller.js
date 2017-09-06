@@ -10,7 +10,7 @@ export class NotesController {
         this.booksData = [];
         this.tagsData = [];
         // reference to notes
-        this.excerptsData = [];
+        this.notesData = [];
         this.getExcerpts();
 
         this.preview = true;
@@ -51,7 +51,7 @@ export class NotesController {
 
     getExcerpts () {
         this.noteEditorService.getNotes().then(notes => {
-            this.excerptsData = notes;
+            this.notesData = notes;
             // excerpt change event
             this.$scope.$broadcast(this.NOTE_EVENTS.noteAllLoaded, notes);
         });

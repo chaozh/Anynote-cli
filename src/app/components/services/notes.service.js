@@ -11,7 +11,7 @@ export class NotesService {
     }
 
     getNote(id) {
-        return this.$http.put(this.url + id);
+        return this.$http.get(this.url + id);
     }
 
     getNotes() {

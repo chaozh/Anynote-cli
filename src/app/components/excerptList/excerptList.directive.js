@@ -24,8 +24,11 @@ class ExcerptListController {
             $scope, $state, $stateParams, NOTE_EVENTS
         });
 
+        //this.filteredExcerpts = this.excerpts;
         // fetched from remote
-        this.$scope.$on(this.NOTE_EVENTS.noteAllLoaded, (notes) => {
+        this.$scope.$on(this.NOTE_EVENTS.noteAllLoaded, (event, notes) => {
+            // TODO this.excerpts this time could be []
+            this.excerpts = notes;
             this.filteredExcerpts = this.excerpts;
         });
     }
@@ -41,9 +44,9 @@ class ExcerptListController {
             return true;
           }
 
-          if (excerpt.tags.find(x => x.toLowerCase().includes(text))) {
+          /*if (excerpt.tags.find(x => x.toLowerCase().includes(text))) {
             return true;
-          }
+          }*/
         });
     }
 

@@ -54,11 +54,11 @@ class NoteEditorController {
         this.$scope.$emit(this.NOTE_EVENTS.noteUpdate, this.revisions);
 
         // apply or digest
-        this.$scope.$on(this.NOTE_EVENTS.noteInit, (event, data) => {
-            _editor.value(data);
-        });
-        this.$scope.$on(this.NOTE_EVENTS.noteSync, (event, data) => {
-            _editor.value(data);
-        });
+        // this.$scope.$on(this.NOTE_EVENTS.noteInit, (event, data) => {
+        //     _editor.value(data);
+        // });
+        // this.$scope.$on(this.NOTE_EVENTS.noteSync, (event, data) => {
+        //     _editor.value(data);
+        // });
     }
 }

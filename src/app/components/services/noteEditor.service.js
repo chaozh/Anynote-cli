@@ -30,7 +30,7 @@ export class NoteEditorService {
             if (note && angular.isDefined(note.content)) {
                 return this.$q.resolve(note);
             }
-            return this.NotesService.getNote(id).then(res => {
+            return this.notesService.getNote(id).then(res => {
                 let note = res.data.note;
                 // TODO
                 this.notes.push(note);
