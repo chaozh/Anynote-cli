@@ -41,6 +41,10 @@ export class NotesController {
                 this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, note);
             });
         });
+
+        this.$scope.$on(this.NOTE_EVENTS.noteDelete, (event, data) => {
+            this.noteEditorService.deleteNote(data);
+        });
     }
 
     getTags () {
@@ -60,7 +64,6 @@ export class NotesController {
 
     sync() {
         //deal with content also with tags & book
-        this.note = this.noteEditorService.getEmptyNote();
         var note_ = this.note;
         if (note_.content === "") {
             // no need for publish
@@ -76,10 +79,9 @@ export class NotesController {
         note_.UID = this.$scope.main.user.UID;
         // TODO
         note_.url = note_.title;
-        this.$log.info(note_);
 
-        if(angular.isNumber(note_.id)) {
-            this.noteEditorService.updateNote(note_.id, note_).then(note => {
+        if(angular.isNumber(note_.NID)) {
+            this.noteEditorService.updateNote(note_.NID, note_).then(note => {
                 this.note = note;
                 // trigger sync event
                 this.$scope.$broadcast(this.NOTE_EVENTS.noteSync, this.note);

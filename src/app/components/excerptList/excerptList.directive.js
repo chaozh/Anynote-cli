@@ -66,6 +66,6 @@ class ExcerptListController {
     }
 
     delete(id) {
-
+        this.$scope.$emit(this.NOTE_EVENTS.noteDelete, id);
     }
 }

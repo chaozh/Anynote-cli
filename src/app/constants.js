@@ -13,7 +13,19 @@ angular
     noteSync: 'note-sync', // push to remote
 
     noteAllLoaded: 'note-all-loaded', // all notes pull from remote
-    noteEdit: 'note-edit'
+    noteEdit: 'note-edit',
+    noteDelete: 'note-delete'
+})
+.constant('POST_EVENTS', {
+    postInit: 'post-init', //created in local
+    postLoaded: 'post-loaded', // pull from remote
+    postUpdate: 'post-update', // update in local
+    postRender: 'post-render', // html generated
+    postSync: 'post-sync', // push to remote
+
+    postAllLoaded: 'post-all-loaded', // all posts pull from remote
+    postEdit: 'post-edit',
+    postDelete: 'post-delete'
 })
 .constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',

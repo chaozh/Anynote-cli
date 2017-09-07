@@ -1,4 +1,4 @@
-export class PostService {
+export class NoteService {
 
     constructor($http, $q, APIURL) {
         'ngInject';
@@ -7,26 +7,26 @@ export class PostService {
             $http, $q, APIURL
         });
 
-        this.url = this.APIURL + '/posts/';
+        this.url = this.APIURL + '/notes/';
     }
 
-    getPost(id) {
+    getNote(id) {
         return this.$http.get(this.url + id);
     }
 
-    getPosts() {
+    getNotes() {
         return this.$http.get(this.url);
     }
 
-    newPost(post) {
-        return this.$http.post(this.url, post);
+    newNote(note) {
+        return this.$http.post(this.url, note);
     }
 
-    updatePost(id, post) {
-        return this.$http.put(this.url + id, post);
+    updateNote(id, note) {
+        return this.$http.put(this.url + id, note);
     }
 
-    deletePost(id) {
+    deleteNote(id) {
         return this.$http.delete(this.url + id);
     }
 }

@@ -1,14 +1,13 @@
 export class NoteEditorService {
  //TODO: Note vs Book
-    constructor($http, $q, APIURL, moment, notesService) {
+    constructor($http, $q, APIURL, moment, noteService) {
         'ngInject';
 
         Object.assign(this, {
-          $http, $q, APIURL, moment, notesService
+          $http, $q, APIURL, moment, noteService
         });
 
         this.notes = [];
-        this.books = [];
         this.tags = [];
     }
 
@@ -19,18 +18,17 @@ export class NoteEditorService {
             html: '',
             status: 'draft',
             date: this.moment().format(),
-            book: '',
             tags: []
         };
     }
 
     getNote(id) {
         if (id && angular.isNumber(id)) {
-            let note = this.notes.find(note => note.id === id);
+            let note = this.notes.find(note => note.NID === id);
             if (note && angular.isDefined(note.content)) {
                 return this.$q.resolve(note);
             }
-            return this.notesService.getNote(id).then(res => {
+            return this.noteService.getNote(id).then(res => {
                 let note = res.data.note;
                 // TODO
                 this.notes.push(note);
@@ -40,12 +38,11 @@ export class NoteEditorService {
     }
 
     getNotes() {
-        return this.notesService.getNotes().then(res => {
+        return this.noteService.getNotes().then(res => {
             let notes = res.data.notes;
             for (var note in notes) {
             this.notes.push(note);
             // TODO: need update
-            this.books.push(note.book);
             this.tags.push(note.tags);
             }
 
@@ -54,18 +51,17 @@ export class NoteEditorService {
     }
 
     newNote(note) {
-        return this.notesService.newNote(note).then(res => {
+        return this.noteService.newNote(note).then(res => {
             let note = res.data.note;
             this.notes.push(note);
             // TODO: need update
-            this.books.push(note.book);
             this.tags.push(note.tags);
             return note;
         });
     }
 
     updateNote(id, note) {
-        let _note = this.notes.find(note => note.id === id);
+        let _note = this.notes.find(note => note.NID === id);
         if (_note && angular.isDefined(_note.content)) {
             _note = note;
         }
@@ -73,7 +69,6 @@ export class NoteEditorService {
         return this.NotesService.updateNote(id, note).then(res => {
             let note = res.data.note;
             this.notes.push(note); //update
-            this.books.push(note.book);
             this.tags.push(note.tags);
             return note;
         });
@@ -82,20 +77,8 @@ export class NoteEditorService {
     deleteNote(id) {
         return this.NotesService.deleteNote(id).then(res => {
             this.notes = [];
-            this.books = [];
             this.tags = [];
             return res.data;
-        });
-    }
-
-    getBooks() {
-        if (this.books.length) {
-            return this.$q.resolve(this.books);
-        }
-        return this.$http.get(this.APIURL + '/books').then(res => {
-            let books = res.data.books;
-            this.books = books;
-            return books;
         });
     }
 

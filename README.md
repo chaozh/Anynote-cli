@@ -8,14 +8,17 @@ login:
 =>notes => signin => notes =(logout)=> signin
 
 note:
-2. sync / edit mode fail!
-data flow: notes.ctrl(this.note) <=> editor.dir => simplemde <=> jquery
 3. tag / ?? book
+4. pagination
 
 editor:
 
 1. simplemde
 https://github.com/NextStepWebs/simplemde-markdown-editor
+
+post:
+1. new & drag & drop
+2. pagination
 
 # related
 

@@ -5,13 +5,10 @@ export function PostEditorDirective() {
         restrict: 'E',
         templateUrl: 'app/components/postEditor/postEditor.html',
         scope: {
-            homeTxt: '@',
-            homeLink: '&',
-            tags: '=',
-            excerpts: '='
+           notes: '='
         },
         controller: PostEditorController,
-        controllerAs: 'vm',
+        controllerAs: 'editor',
         bindToController: true
     };
 
@@ -19,11 +16,12 @@ export function PostEditorDirective() {
 }
 
 class NotesModalController {
-    constructor($uibModalInstance, excerpts) {
+    constructor($uibModalInstance, notes, note) {
         'ngInject';
 
         this.$uibModalInstance = $uibModalInstance;
-        this.excerptsData = excerpts;
+        this.notes = notes;
+        this.note = note;
     }
 
     ok() {
@@ -32,6 +30,10 @@ class NotesModalController {
 
     cancel() {
         this.$uibModalInstance.dismiss('cancel');
+    }
+
+    edit(id) {
+        this.note = this.note.find(note => note.NID === id);
     }
 }
 
@@ -42,6 +44,7 @@ class PostEditorController {
         Object.assign(this, {
             $uibModal
         });
+        this.note = null;
     }
 
     addNote() {
@@ -51,12 +54,22 @@ class PostEditorController {
               controllerAs: 'vm',
               bindToController : true,
               resolve: {
-                excerpts: () => {
-                  return this.excerpts;
+                notes: () => {
+                    return this.notes;
+                },
+                note: () => {
+                    return this.note;
                 }
               }
         });
 
+        let tpl = `<aside class="post-note draggable">
+                <div class="content">this is a test2</div>
+                <button class="btn btn-default" ng-click="editor.editNote()" role="button">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit Note</span>
+                </button>
+            </aside>`;
+        // append new note to place
         modalInstance.result.then();
     }
 }

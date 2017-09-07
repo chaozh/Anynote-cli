@@ -1,7 +1,7 @@
 <section>
     <div class="post-editor">
         <div id="post-tools">
-            <button class="btn btn-default" ng-click="vm.addNote()" role="button">
+            <button class="btn btn-default" ng-click="editor.addNote()" role="button">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true">Add Note</span>
             </button>
 
@@ -10,13 +10,8 @@
                     <h3 class="modal-title">Notes</h3>
                 </div>
                 <div class="modal-body">
-                    <excerpt-list title-txt="Posts" excerpts="vm.excerptsData"></excerpt-list>
-                    <!-- <ul>
-                        <li ng-repeat="item in items">
-                            <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                        </li>
-                    </ul>
-                    Selected: <b>{{ selected.item }}</b> -->
+                    <note-editor note="vm.note" preview="false"></note-editor>
+                    <excerpt-list title-txt="Notes" excerpts="vm.notes"></excerpt-list>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
@@ -27,21 +22,12 @@
         <div class="post-notes-dragable" ng-sortable>
             <aside class="post-note draggable">
                 <div class="content">this is a test1</div>
-                <button class="btn btn-default" ng-click="vm.editNote()" role="button">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit Note</span>
-                </button>
-            </aside>
-
-            <aside class="post-note draggable">
-                <div class="content">this is a test2</div>
-                <button class="btn btn-default" ng-click="vm.editNote()" role="button">
+                <button class="btn btn-default" ng-click="editor.editNote()" role="button">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit Note</span>
                 </button>
             </aside>
         </div>
-        <!-- md edit state -->
-         <note-editor note="vm.note" preview="vm.preview"></note-editor>
         <!-- style edit state -->
-        <div styled="vm.post.content" class="style-body"></div>
+        <div styled="editor.post.content" class="style-body"></div>
     </div>
 </section>
