@@ -7,7 +7,7 @@ export class PostEditorService {
           $http, $q, APIURL, moment, postService
         });
 
-        this.excerpts = [];
+        this.posts = [];
         this.books = [];
         this.tags = [];
     }
@@ -26,7 +26,7 @@ export class PostEditorService {
 
     getPost(id) {
         if (id && angular.isNumber(id)) {
-            let post = this.excerpts.find(post => post.PID === id);
+            let post = this.posts.find(post => post.PID === id);
             if (post && angular.isDefined(post.content)) {
                 return this.$q.resolve(post);
             }
@@ -49,7 +49,7 @@ export class PostEditorService {
                 this.tags.push(post.tags);
             }
 
-            return notes;
+            return posts;
         });
     }
 

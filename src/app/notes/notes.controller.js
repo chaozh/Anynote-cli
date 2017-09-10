@@ -56,6 +56,7 @@ export class NotesController {
     getExcerpts () {
         this.noteEditorService.getNotes().then(notes => {
             this.notesData = notes;
+            this.$scope.$apply();
             // excerpt change event
             this.$scope.$broadcast(this.NOTE_EVENTS.noteAllLoaded, notes);
         });

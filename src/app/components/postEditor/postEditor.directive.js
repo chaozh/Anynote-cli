@@ -5,7 +5,8 @@ export function PostEditorDirective() {
         restrict: 'E',
         templateUrl: 'app/components/postEditor/postEditor.html',
         scope: {
-           notes: '='
+           notes: '=',
+           items: '='
         },
         controller: PostEditorController,
         controllerAs: 'editor',
@@ -22,10 +23,20 @@ class NotesModalController {
         this.$uibModalInstance = $uibModalInstance;
         this.notes = notes;
         this.note = note;
+
+        // note edit
+        // this.$scope.$on(this.NOTE_EVENTS.noteEdit, (event, data) => {
+        //     this.id = data;
+        //     this.postEditorService.getNote(this.id).then(note => {
+        //         this.note = note;
+        //         // trigger load event
+        //         this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, note);
+        //     });
+        // });
     }
 
     ok() {
-        this.$uibModalInstance.close();
+        this.$uibModalInstance.close(this.note);
     }
 
     cancel() {
@@ -33,21 +44,20 @@ class NotesModalController {
     }
 
     edit(id) {
-        this.note = this.note.find(note => note.NID === id);
+        this.note = this.notes.find(note => note.NID === id);
     }
 }
 
 class PostEditorController {
-    constructor ($uibModal) {
+    constructor ($scope, $uibModal, postEditorService) {
         'ngInject';
 
         Object.assign(this, {
-            $uibModal
+            $scope, $uibModal, postEditorService
         });
-        this.note = null;
     }
 
-    addNote() {
+    editItem(index, note) {
         let modalInstance = this.$uibModal.open({
               templateUrl: 'notesModal.html',
               controller: NotesModalController,
@@ -58,18 +68,40 @@ class PostEditorController {
                     return this.notes;
                 },
                 note: () => {
-                    return this.note;
+                    return note;
                 }
               }
         });
 
-        let tpl = `<aside class="post-note draggable">
-                <div class="content">this is a test2</div>
-                <button class="btn btn-default" ng-click="editor.editNote()" role="button">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit Note</span>
-                </button>
-            </aside>`;
+        modalInstance.result.then((note) => {
+            this.items[index] = note;
+        });
+    }
+
+    deleteItem(index) {
+        this.items.splice(index, 1);
+    }
+
+    addItem() {
+        let modalInstance = this.$uibModal.open({
+              templateUrl: 'notesModal.html',
+              controller: NotesModalController,
+              controllerAs: 'vm',
+              bindToController : true,
+              resolve: {
+                notes: () => {
+                    return this.notes;
+                },
+                note: () => {
+                    return {};
+                }
+              }
+        });
+
         // append new note to place
-        modalInstance.result.then();
+        modalInstance.result.then((note) => {
+            console.log(this);
+            this.items.push(note);
+        });
     }
 }

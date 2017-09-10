@@ -1,7 +1,7 @@
 <section>
     <div class="post-editor">
         <div id="post-tools">
-            <button class="btn btn-default" ng-click="editor.addNote()" role="button">
+            <button class="btn btn-default" ng-click="editor.addItem()" role="button">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true">Add Note</span>
             </button>
 
@@ -19,11 +19,15 @@
                 </div>
             </script>
         </div>
-        <div class="post-notes-dragable" ng-sortable>
-            <aside class="post-note draggable">
-                <div class="content">this is a test1</div>
-                <button class="btn btn-default" ng-click="editor.editNote()" role="button">
+        <div class="post-notes-dragable" ng-repeat="item in editor.items" ng-sortable>
+            <aside class="post-note draggable" id="note-{{ ::item.NID }}">
+                <div class="content">{{ ::item.content }}</div>
+
+                <button class="btn btn-default" ng-click="editor.editItem(item)" role="button">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true">Edit Note</span>
+                </button>
+                <button class="btn btn-warning" ng-click="editor.deleteItem($index)" role="button">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true">Delete Note</span>
                 </button>
             </aside>
         </div>

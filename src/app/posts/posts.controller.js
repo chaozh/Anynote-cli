@@ -13,6 +13,8 @@ export class PostsController {
         this.preview = false;
 
         this.notes = [];
+        this.items = [];
+        //
         this.excerpts = [];
         this.getExcerpts();
 
@@ -29,18 +31,18 @@ export class PostsController {
             // trigger init event
             this.$scope.$broadcast(this.POST_EVENTS.postInit, this.post);
         }
-
-        this.$scope.$on(this.NOTE_EVENTS.noteEdit, (event, data) => {
+        // post edit
+        this.$scope.$on(this.POST_EVENTS.postEdit, (event, data) => {
             this.id = data;
-            this.postEditorService.getNote(this.id).then(post => {
+            this.postEditorService.getPosr(this.id).then(post => {
                 this.post = post;
                 // trigger load event
                 this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, post);
             });
         });
 
-        this.$scope.$on(this.NOTE_EVENTS.noteDelete, (event, data) => {
-            this.postEditorService.deleteNote(data);
+        this.$scope.$on(this.POST_EVENTS.postDelete, (event, data) => {
+            this.postEditorService.deletePost(data);
         });
     }
 
@@ -52,6 +54,7 @@ export class PostsController {
 
     getExcerpts() {
         this.postEditorService.getPosts().then(excerpts => {
+            // TODO
             this.excerpts = excerpts;
             // excerpt change event
             this.$scope.$broadcast(this.NOTE_EVENTS.noteAllLoaded, excerpts);
@@ -59,12 +62,13 @@ export class PostsController {
 
     }
 
-    getNotes() {
-        this.postEditorService.getPosts().then(notes => {
-            this.notesData = notes;
-            // excerpt change event
-            this.$scope.$broadcast(this.NOTE_EVENTS.noteAllLoaded, notes);
-        });
+    getItems() {
+        //
+        ids = this.post.notes.split(',');
+        this.postEditorService.getNotes().then(notes => {
+            this.items = notes;
+            // for post edit
+        })
     }
 
     sync() {
@@ -85,7 +89,9 @@ export class PostsController {
         // merge content from notes
         for (note in this.notes){
             this.post.content += note.html;
+            this.post.notes.push(note.NID);
         }
+        this.post.notes = this.post.notes.join(',');
 
         if(angular.isNumber(post_.PID)) {
             this.noteEditorService.updateNote(post_.PID, post_).then(post => {
