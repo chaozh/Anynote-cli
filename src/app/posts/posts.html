@@ -13,7 +13,7 @@
     </div>
     <!-- <posts-list></posts-list> -->
     <div id="posts-excerpt-list" class="col-xs-4 col-sm-4 col-md-4">
-        <excerpt-list title-txt="Posts" excerpts="posts.excerpts"></excerpt-list>
+        <excerpt-list title-txt="Posts" excerpts="posts.excerpts" edit="posts.edit(id)" delete="posts.delete(id)"></excerpt-list>
     </div>
     <!-- <post-editor></post-editor> -->
     <div id="post-editor" class="col-xs-6 col-sm-6 col-md-6">
@@ -24,8 +24,8 @@
                 <span class="glyphicon glyphicon-plus" aria-hidden="true">Sync</span>
             </button>
 
-            <div class="post-title">
-                <input ng-model="posts.post.title" placeholder="Untitled">
+            <div class="post-title input-group">
+                <input ng-model="posts.post.title" placeholder="Untitled" class="form-control">
             </div>
 
             <div class="post-metas">

@@ -33,18 +33,6 @@ export class NotesController {
         // this.$scope.$on(this.NOTE_EVENTS.noteUpdate, (event, data) => {
         //     this.sync();
         // });
-        this.$scope.$on(this.NOTE_EVENTS.noteEdit, (event, data) => {
-            this.id = data;
-            this.noteEditorService.getNote(this.id).then(note => {
-                this.note = note;
-                // trigger load event
-                this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, note);
-            });
-        });
-
-        this.$scope.$on(this.NOTE_EVENTS.noteDelete, (event, data) => {
-            this.noteEditorService.deleteNote(data);
-        });
     }
 
     getTags () {
@@ -56,11 +44,26 @@ export class NotesController {
     getExcerpts () {
         this.noteEditorService.getNotes().then(notes => {
             this.notesData = notes;
-            this.$scope.$apply();
             // excerpt change event
             this.$scope.$broadcast(this.NOTE_EVENTS.noteAllLoaded, notes);
         });
 
+    }
+
+    edit(id) {
+        //trigger refresh event
+        // TODO cause refesh
+        //this.$state.go('notes', { id: id });
+        this.id = id;
+        this.noteEditorService.getNote(this.id).then(note => {
+            this.note = note;
+            // trigger load event
+            this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, note);
+        });
+    }
+
+    delete(id) {
+        this.noteEditorService.deleteNote(id);
     }
 
     sync() {

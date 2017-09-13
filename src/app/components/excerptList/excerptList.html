@@ -27,7 +27,7 @@
 </div>
 
 <div class="excerpt-list" ng-sortable>
-    <aside class="excerpt-content draggable" ng-repeat="excerpt in vm.filteredExcerpts" ng-click="vm.edit(excerpt.NID)" id="excerpt-{{::excerpt.NID}}">
+    <aside class="excerpt-content draggable" ng-repeat="excerpt in vm.filteredExcerpts" ng-click="vm.edit({id:excerpt.NID})" id="excerpt-{{::excerpt.NID}}">
         <div class="thumbnail">
             <!-- <img ng-src=="..." alt="..."> -->
             <div class="caption">
@@ -39,7 +39,7 @@
             <!-- press or hover -->
             <span class="glyphicon glyphicon-share" aria-hidden="true" ng-click="vm.share(excerpt.id)"></span>
             <span class="glyphicon glyphicon-star-empty" aria-hidden="true" ng-click="vm.star(excerpt.id)"></span>
-            <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="vm.delete(excerpt.id)"></span>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="vm.delete({id:excerpt.id})"></span>
         </div>
     </aside>
 </div>

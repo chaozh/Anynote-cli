@@ -5,16 +5,14 @@ export class PostsController {
         Object.assign(this, {
             $scope, $state, $stateParams, noteEditorService, postEditorService, POST_EVENTS, NOTE_EVENTS
         });
-
+        // for menu
         this.favorsData = [];
         this.booksData = [];
         this.tagsData = [];
 
-        this.preview = false;
-
-        this.notes = [];
+        // for post itself
         this.items = [];
-        //
+        // for posts list
         this.excerpts = [];
         this.getExcerpts();
 
@@ -31,19 +29,6 @@ export class PostsController {
             // trigger init event
             this.$scope.$broadcast(this.POST_EVENTS.postInit, this.post);
         }
-        // post edit
-        this.$scope.$on(this.POST_EVENTS.postEdit, (event, data) => {
-            this.id = data;
-            this.postEditorService.getPosr(this.id).then(post => {
-                this.post = post;
-                // trigger load event
-                this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, post);
-            });
-        });
-
-        this.$scope.$on(this.POST_EVENTS.postDelete, (event, data) => {
-            this.postEditorService.deletePost(data);
-        });
     }
 
     getTags() {
@@ -69,6 +54,22 @@ export class PostsController {
             this.items = notes;
             // for post edit
         })
+    }
+
+    edit(id) {
+        //trigger refresh event
+        // TODO cause refesh
+        //this.$state.go('notes', { id: id });
+        this.id = id;
+        this.postEditorService.getPost(this.id).then(post => {
+            this.post = post;
+            // trigger load event
+            this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, post);
+        });
+    }
+
+    delete(id) {
+        this.postEditorService.deletePost(id);
     }
 
     sync() {

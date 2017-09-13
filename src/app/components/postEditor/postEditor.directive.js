@@ -5,7 +5,6 @@ export function PostEditorDirective() {
         restrict: 'E',
         templateUrl: 'app/components/postEditor/postEditor.html',
         scope: {
-           notes: '=',
            items: '='
         },
         controller: PostEditorController,
@@ -23,16 +22,6 @@ class NotesModalController {
         this.$uibModalInstance = $uibModalInstance;
         this.notes = notes;
         this.note = note;
-
-        // note edit
-        // this.$scope.$on(this.NOTE_EVENTS.noteEdit, (event, data) => {
-        //     this.id = data;
-        //     this.postEditorService.getNote(this.id).then(note => {
-        //         this.note = note;
-        //         // trigger load event
-        //         this.$scope.$broadcast(this.NOTE_EVENTS.noteLoaded, note);
-        //     });
-        // });
     }
 
     ok() {
@@ -45,16 +34,25 @@ class NotesModalController {
 
     edit(id) {
         this.note = this.notes.find(note => note.NID === id);
+        // also change style
+    }
+
+    delete(id) {
+
     }
 }
 
 class PostEditorController {
-    constructor ($scope, $uibModal, postEditorService) {
+    constructor ($scope, $uibModal, postEditorService, noteEditorService, NOTE_EVENTS) {
         'ngInject';
 
         Object.assign(this, {
-            $scope, $uibModal, postEditorService
+            $scope, $uibModal, postEditorService, noteEditorService, NOTE_EVENTS
         });
+
+        // for note pick up
+        this.notes = [];
+        this.getExcerpts();
     }
 
     editItem(index, note) {
@@ -76,6 +74,16 @@ class PostEditorController {
         modalInstance.result.then((note) => {
             this.items[index] = note;
         });
+    }
+
+    getExcerpts() {
+        this.noteEditorService.getNotes().then(notes => {
+            // TODO
+            this.notes = notes;
+            // excerpt change event
+            this.$scope.$broadcast(this.NOTE_EVENTS.noteAllLoaded, notes);
+        });
+
     }
 
     deleteItem(index) {
@@ -100,7 +108,7 @@ class PostEditorController {
 
         // append new note to place
         modalInstance.result.then((note) => {
-            console.log(this);
+            //console.log(this);
             this.items.push(note);
         });
     }

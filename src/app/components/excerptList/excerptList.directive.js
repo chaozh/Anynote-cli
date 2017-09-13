@@ -6,7 +6,9 @@ export function ExcerptListDirective() {
         templateUrl: 'app/components/excerptList/excerptList.html',
         scope: {
             titleTxt: '@',
-            excerpts: '='
+            excerpts: '=',
+            edit: '&',
+            delete: '&'
         },
         controller: ExcerptListController,
         controllerAs: 'vm',
@@ -50,22 +52,11 @@ class ExcerptListController {
         });
     }
 
-    edit(id) {
-        //trigger refresh event
-        // TODO cause refesh
-        //this.$state.go('notes', { id: id });
-        this.$scope.$emit(this.NOTE_EVENTS.noteEdit, id);
-    }
-
     share() {
 
     }
 
     star(id) {
 
-    }
-
-    delete(id) {
-        this.$scope.$emit(this.NOTE_EVENTS.noteDelete, id);
     }
 }
