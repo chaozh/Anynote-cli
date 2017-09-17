@@ -53,6 +53,12 @@ class PostEditorController {
         // for note pick up
         this.notes = [];
         this.getExcerpts();
+
+        this.sortableConf = {
+            animation: 1000,
+            chosenClass: 'drag-chosen',
+            forceFallback: true
+        }
     }
 
     editItem(index, note) {

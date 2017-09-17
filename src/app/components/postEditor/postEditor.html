@@ -19,8 +19,8 @@
                 </div>
             </script>
         </div>
-        <div class="post-notes-dragable" ng-repeat="item in editor.items" ng-sortable>
-            <aside class="post-note draggable" id="note-{{ ::item.NID }}">
+        <div class="post-notes-dragable" ng-sortable="editor.sortableConf">
+            <aside ng-repeat="item in editor.items" class="post-note" id="note-{{ ::item.NID }}">
                 <div class="content">{{ ::item.content }}</div>
 
                 <button class="btn btn-default" ng-click="editor.editItem(item)" role="button">

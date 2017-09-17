@@ -8,16 +8,26 @@ login:
 =>notes => signin => notes =(logout)=> signin
 
 note:
-3. tag / ?? book
+1. 中文支持
+2. style
+3. tag / channel
 4. pagination
 
 editor:
 
-1. simplemde
-https://github.com/NextStepWebs/simplemde-markdown-editor
+1. should edit in place！
+2. tag
 
 post:
-1. new & drag & drop
+1. drag & drop
+
+https://github.com/RubaXa/Sortable **
+https://github.com/angular-ui/ui-sortable
+
+https://github.com/codef0rmer/angular-dragdrop
+https://github.com/a5hik/ng-sortable  XX
+
+
 2. pagination
 
 # related
